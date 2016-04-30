@@ -1,0 +1,90 @@
+--- src/libs/xpl/mem.c.orig	2005-08-22 17:30:50.306586688 +0100
++++ src/libs/xpl/mem.c	2005-08-22 17:57:59.561902232 +0100
+@@ -55,23 +55,7 @@
+ {
+     sigset_t				signalSet;
+ 
+-    sigemptyset(&signalSet);
+-
+-    sigaddset(&signalSet, SIGTERM);
+-    sigaddset(&signalSet, SIGINT);
+-    sigaddset(&signalSet, SIGUSR1);
+-    sigaddset(&signalSet, SIGUSR2);
+-    sigaddset(&signalSet, SIGHUP);
+-    sigaddset(&signalSet, SIGPIPE);
+-
+-/* DEBUG: most of below signals will be removed, once we find out which is killing us */
+-    sigaddset(&signalSet, SIGALRM);
+-    sigaddset(&signalSet, SIGPOLL);
+-    sigaddset(&signalSet, SIGPROF);
+-    sigaddset(&signalSet, SIGVTALRM);
+-    sigaddset(&signalSet, SIGSTKFLT);
+-    sigaddset(&signalSet, SIGPWR);
+-    sigaddset(&signalSet, SIGUNUSED);
++    sigfillset(&signalSet);
+ 
+     pthread_sigmask(SIG_BLOCK, &signalSet, NULL);
+     return;
+@@ -80,54 +64,26 @@
+ void XplSignalCatcher(XplShutdownFunc XplShutdownFunction)
+ {
+     sigset_t				signalSet;
++    int i;
+     struct sigaction	act = {0};
+ 
+     XplSignalBlock();
+ 
+     ApplicationXplShutdownFunction = XplShutdownFunction;
+ 
+-    sigemptyset(&signalSet);
+-    sigaddset(&signalSet, SIGTERM);
+-    sigaddset(&signalSet, SIGINT);
+-    sigaddset(&signalSet, SIGUSR1);
+-    sigaddset(&signalSet, SIGUSR2);
+-    sigaddset(&signalSet, SIGHUP);
+-
+-/* DEBUG: most of below signals will be removed, once we find out which is killing us */
+-    sigaddset(&signalSet, SIGALRM);
+-    sigaddset(&signalSet, SIGPOLL);
+-    sigaddset(&signalSet, SIGPROF);
+-    sigaddset(&signalSet, SIGVTALRM);
+-    sigaddset(&signalSet, SIGSTKFLT);
+-    sigaddset(&signalSet, SIGPWR);
+-    sigaddset(&signalSet, SIGUNUSED);
+-    sigaddset(&signalSet, SIGPIPE);
+-
++    sigfillset(&signalSet);
+ 
+     pthread_sigmask(SIG_UNBLOCK, &signalSet, NULL);
+ 
+     act.sa_sigaction = XPLSignalProcessor;
+-
+-    if ((sigaction(SIGTERM, &act, NULL) == 0) 
+-        && (sigaction(SIGINT, &act, NULL) == 0)
+-        && (sigaction(SIGUSR1, &act, NULL) == 0)
+-        && (sigaction(SIGUSR2, &act, NULL) == 0)
+-        && (sigaction(SIGHUP, &act, NULL) == 0)
+-
+-/* DEBUG: most of below signals will be removed, once we find out which is killing us */
+-        && (sigaction(SIGALRM, &act, NULL) == 0)
+-        && (sigaction(SIGPOLL, &act, NULL) == 0)
+-        && (sigaction(SIGPROF, &act, NULL) == 0)
+-        && (sigaction(SIGVTALRM, &act, NULL) == 0)
+-        && (sigaction(SIGSTKFLT, &act, NULL) == 0)
+-        && (sigaction(SIGPWR, &act, NULL) == 0)
+-        && (sigaction(SIGUNUSED, &act, NULL) == 0)
+-        && (sigaction(SIGPIPE, &act, NULL) == 0)) {
+-        return;
++    
++    for(i=0; i<50; i++) {
++        /* we know the signals we're interested in are all <50; but we 
++	 * don't necessarily know the names. Assume we don't care about
++	 * signals that don't exist... */
++        sigaction(i, &act, NULL);
+     }
+ 
+-    perror("XplSignalCatcher()");
+-
+     return;
+ }
+ 

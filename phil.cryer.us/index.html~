@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>phil cryer</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link REL="shortcut icon" href="favicon.ico">
+</head>
+<body>
+<div id="container">
+<p id="header"><span class="name">phil cryer</span><span id="sep">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="page">home</span></p>
+<p id="navigation">home | <a href="art.html">art</a> | <a href="geek.html">geek</a> | <a href="music.html">music</a> | <a href="photos.html">photos</a> | <a href="quotes.html">quotes</a> | <a href="resume.html">resume</a> | <a href="contact.html">contact</a></p><br />
+<div id="content">
+<p>home<ul>Hi, you've reached my little site on the web.  After years of having pages dedicated to disparate interests thrown around here and there I've finally compiled them into one place; this modest site.</ul>
+<p><p><p>about me<ul>
+A little background on me, I was born and raised in Saint Louis, Missouri, but then lived in Austin, Texas for 9 years where I grew up, enjoyed seeing bands and drank beer all while being constantly thrown around by the <a href="http://www.answers.com/topic/dot-com-1"><i>.com</i></a> bubble.  Once that was over I moved back to Saint Louis where I live with my wife, two children and two dogs. I am currently employed at a large (fortune 500) software company where I manage code and adminstrate Unix applications. It's a big change from my last gig in Austin where I worked at a small (54 person) software company where I managed code, administrated Unix and Linux servers and tried to keep the mood light.<p>
+I enjoy music, art, yoga, time with my family, beer, hot weather and fruit.  I dislike close minded people, poorly coded websites, loose fitting trousers and broken cd cases.  Also, excuse me, but I believe you have my stapler.</ul>
+</div>
+</div>
+</body>
+</html>

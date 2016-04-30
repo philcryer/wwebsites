@@ -1,0 +1,23 @@
+# testing: main / non-free / contrib
+deb http://ftp.us.debian.org/debian/ testing main non-free contrib
+#deb http://debian.osuosl.org/debian testing main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ testing main contrib non-free
+
+# testing security: main / non-free /contrib
+deb http://security.debian.org/ lenny/updates main contrib non-free
+#deb-src http://security.debian.org/ lenny/updates main contrib non-free
+
+# http://www.debian-multimedia.org/
+deb http://www.debian-multimedia.org lenny main
+#deb-src http://www.debian-multimedia.org lenny main
+
+# Skype
+deb http://download.skype.com/linux/repos/debian/ stable non-free 
+
+# Unstable sources (install with 'apt-get -t unstable install <pkg_name>')
+# nginx
+#deb http://ftp.debian.org/debian/ unstable main contrib 
+#deb-src http://ftp.debian.org/debian/ unstable main contrib
+
+# fedora-commons (sure it'll work about as well as normal installs)
+deb http://debian.cvt.dk/ported-software etch local

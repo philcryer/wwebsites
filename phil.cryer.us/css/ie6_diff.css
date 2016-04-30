@@ -1,0 +1,19 @@
+div.navigation {
+margin-bottom:-17px;
+margin-left:43px;
+}
+
+div.navigation li a,div.navigation li a:visited,div.navigation li span {
+padding:5px 11px 6px 16px;
+}
+
+div.contents p {
+font-size:110%;
+text-align:justify;
+line-height:140%;
+margin-top:1em;
+width:600px;
+margin-left:60px;
+margin-right:auto;
+}
+

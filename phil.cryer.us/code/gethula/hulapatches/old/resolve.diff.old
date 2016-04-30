@@ -1,0 +1,43 @@
+--- ./src/libs/xpl/resolve.c.org	Fri Apr  8 02:54:40 2005
++++ ./src/libs/xpl/resolve.c	Thu Apr  7 02:17:32 2005
+@@ -21,11 +21,14 @@
+ 
+ #include <config.h>
+ #include <xpl.h>
+-#include <connio.h>
++#include <connio.h>
+ #include <xplresolve.h>
+ 
+ #ifdef HAVE_RESOLV_H
+ #include <resolv.h>
++#include <sys/types.h>
++#include <netinet/in.h>
++#include <arpa/nameser.h>
+ #endif
+ 
+ 
+@@ -58,7 +61,6 @@
+ }  Resolver = { 0 };
+ 
+ /* Pieces of a DNS packet */
+-#pragma pack (push, 1)
+ typedef struct _ResolveHeader {
+     unsigned short id;          /* Query ID -- hopefully unique                   */
+     unsigned short flags;       /* Bit 0: query or response
+@@ -104,7 +106,6 @@
+ 
+ typedef struct _ResolveAData ResolveAData;
+ 
+-#pragma pack(pop)
+ 
+ /* Constants for flags field of ResolveHeader */
+ #define F_TYPERESPONSE      0x8000    /* Packet contains response                       */
+@@ -705,7 +706,7 @@
+     
+     h_errno = 0;
+     
+-    size = res_search(host, ns_c_in, type, answer, answerLen);
++    size = res_search(host, C_IN, type, answer, answerLen);
+     
+     if (size >= 0) {
+ 	return size;

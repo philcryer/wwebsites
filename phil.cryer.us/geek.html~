@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>phil cryer</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link REL="shortcut icon" href="favicon.ico">
+</head>
+<body>
+<div id="container">
+<p id="header"><span class="name">phil cryer</span><span id="sep">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="page">geek</span></p>
+<p id="navigation"><a href="index.html">home</a> | <a href="art.html">art</a> | geek | <a href="music.html">music</a> | <a href="photos.html">photos</a> | <a href="quotes.html">quotes</a> | <a href="resume.html">resume</a> | <a href="contact.html">contact</a></p><br />
+<div id="content">
+<p>geek<ul>
+While it used to be a four letter word, it is now a (somewhat?) coveted title.  Either that or people just have short memories.  Regardless, knowing about technology and having a desire to constantly improve it is now almost as accepted as jaywalking.
+</ul>
+												   <p>
+												   <div id="titleblock">network</div>
+												   <ul>I've always enjoyed playing with computers, and what better way than to continually add more connected together.  Here's a a schematic of my current home network.<ul><br>
+												   <li><a href="network.png"><b>Home Network</b></a></ul></ul>
+												   <ul>While I've run Linux for years, I've been playing with <a href="http://www.freebsd.org"><b>FreeBSD</b></a> for server application for the past few years, and really love it's stability and sanity inducing configuration.  I run a few NetGear routers to provide NAT (network address translation) for my internal network.  We're currently running <a href="http://www.ubuntulinux.com"><b>Ubuntu Linux</b></a>, the great <a href="http://www.debian.org"><b>Debian</b></a> based distribution, for our workstations, with OS X and XP making appearances.</ul></ul>
+												   
+<p>code<ul>
+<a href="http://hula-project.org/"><b>Hula</b></a> - I'm currently contributing to the mail and calendaring server that <a href="http://www.novell.com"><b>Novell</b></a> created from 20,000 lines of NetMail code that they released to open source.  The project has been dubbed Hula, and tackles things very differently compared to other LAMP based mail systems.  I've written build scripts, debugged C code, commited changes and have taken on the task of creating (and ultimately maintianing) the <a href="http://cryer.us/hula">FreeBSD Port of Hula</a>.  I'm often found trolling on #hula on irc.freenode.net, and am enjoying the work I'm getting to do with other volunteers, as well as the great Novell employees that have been the genesis of Hula.<p>
+
+<a href="http://getmoz.mozdev.org/"><b>getmoz</b></a> - back during the early development of <a href="http://www.mozilla.org"><b>Mozilla</b></a> (it was around M30 if anyone remembers that milestone) I started writing some automated build scripts to download, build and install the latest nightly of Mozilla.  In those days it would be broken every few days, so being able to test that ahead of time was pretty cool, not to mention the new (often broken) toys that would be checked in overnight to discover.  After an inital revision, Eric Thibeault Jolin from Montreal joined, helping with error logic, and other things that I hadn't thought of, which was really cool because things just evolved in that way that open source project do.  Once Mozilla got pretty stable (0.8.0) this project became unneeded.  It was a great time though, and I learned allot from it.<p>
+<a href="code/"><b>Code</a></b> - I keep a collection of old scripts (Korn, Bash and Perl) that I have written over the years that may be useful to others.  While most of these are quite simple, they are useful enough for me to keep for reference and share.  They, like all of my coding, are all available under the terms of the <a href=http://www.gnu.org/copyleft/gpl.html#SEC1><b>GNU public license</b></a> version 2 or later; so you may do with them what you will.  <a href="code/"><b>Click here</b></a> to take a look.  Thanks.</ul>
+ <p>
+ <div id="titleblock">public key</div>
+  <ul>-----BEGIN PGP PUBLIC KEY BLOCK-----<br>
+	   Version: GnuPG v1.2.6 (GNU/Linux)<br><br>
+mQGiBEJeowcRBACwhmPALodwgZE83qHv5LpUZffZF5APlJNHm16lhRBAuBGNWMO/
+1BrwU5FHBrUfqVhloVRsTmGG4wJX6za5PCe9UMZYC7133Q33ns/pI1Hm7ecT1RLk
+yokjYsSn8wuKH9sl4yG5vJCtc5q87eukejVUYqprP8dP0cPQTPz+qYw6QwCg0Ri3
+biPU2yrWQqtednRseilVFYUD/jAwxkpkB22bTaHdlQp8Sy1pHoaW1M/SoNjOTUNK
+cArDV95Nbt2oqNvJhBnVL+OxuaX1Vj0XlbsEPeM+9DCKC7vgvRfyugry/JBlPXNA
+LTLoM4+UmqumUHCLHLz3AvFLAYCHJw/nFFT2yVLeXqV8en+5odpEaHVNTztYvmiX
+oKWKA/46jX3ynlV2YHSOjY3mooTjt19UorNLlzoWENJ7HEJWVGRxJ6puFbordtN3
+gQ3AC/IC7ke01GhkQsX9h+jIB8ALFpC5tr8fcJg0YtUwUeGqwdGpQsXasyvYwnC4
++fQ1sjG6eQcxmP9RJgdZ7ZML4skOJw5D83AsdkuXBqLs16N7ZLQwUGhpbCBDcnll
+ciAodGhhbmtzZm9yYWxsdGhlZmlzaCkgPHBoaWxAY3J5ZXIudXM+iFsEExECABsF
+AkJeowcGCwkIBwMCAxUCAwMWAgECHgECF4AACgkQz0si/S8EuC98OgCgjE8cQLHW
+baq5Lz6omh2qO5kv1csAn2aaVApag3o+4G9DpeZ9VcMt8EHBuQENBEJeow8QBACb
+Q2EvtaRmfipZRuYfbz4GaBEaIM6u5b5X0nAdB9oapuPt6B1ADI1AC4rwloS76Tu2
+M7UHX8eKpP0KEaq9XuJ2eF5O9EnnM6RSh5pKV5d1TsyWQi8S+mT5JwKnl75QRYxo
+tW30qndmedA1QU1tdoUG0Ovy0fPnRrb0vZ8tV9Y0RwADBQP/ROpa6Zr4BeOrHQ0U
+1Z4z5h+WGJVZXoAIw+ZHrcheLFUPbjAHRPgQ/FlpXlNisTfOng/SvRa3aSCm6jA1
+OHc2uHAhSQb9vDFGvIl5IlPI/KJeLLINvUzzlq4cNGLBeMmZtAewILWLMrExLpfH
+w7Vxyc7OZDlO917wHQkRPnpZJQ2IRgQYEQIABgUCQl6jDwAKCRDPSyL9LwS4L7Al
+AJ4vicDmTpOH5NKKtNASNCMqK0bSLwCdF/vOHhHkAhCg9YrbUEWyVv2xcao=
+=VkHp<br> 
+-----END PGP PUBLIC KEY BLOCK-----<br>
+<p>public key: <a href="public_key.txt"><b>ascii version</b></a>
+<br><br></ul>
+operating systems I use
+<p><p>
+<div align="center">
+<img src="../icons/openbsd.png" ALT="[OpenBSD]">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="../icons/ubuntu.png" ALT="[Ubuntu Linux]">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="../icons/freebsd.gif" ALT="[FreeBSD]">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="../icons/gentoo.png" ALT="[Gentoo Linux]">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="../icons/apple.jpg" ALT="[OS X]">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="../icons/slackware.png" ALT="[Slackware]">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="dexter.gif" ALT="[Dexter]">
+</div>
+<br>
+</div>
+</div>
+</div>
+</body>
+</html>

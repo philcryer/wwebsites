@@ -1,0 +1,23 @@
+--- autogen.sh.org	Fri Apr  8 02:33:34 2005
++++ autogen.sh	Fri Apr  8 02:37:07 2005
+@@ -7,6 +7,7 @@
+ ORIGDIR=`pwd`
+ cd $srcdir
+ 
++ACLOCAL_FLAGS='-I /usr/local/share/aclocal -I /usr/local/share/aclocal19'
+ PROJECT=hula
+ TEST_TYPE=-f
+ # FIXME
+@@ -29,9 +30,9 @@
+ 	DIE=1
+ }
+ 
+-AUTOMAKE=automake-1.7
+-ACLOCAL=aclocal-1.7
+-LIBTOOLIZE=libtoolize
++AUTOMAKE=automake19
++ACLOCAL=aclocal19
++LIBTOOLIZE=libtoolize15
+ 
+ ($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
+         AUTOMAKE=automake

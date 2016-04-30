@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# title and version
+echo ""
+echo "Ices Launcher v1.0"
+echo "----------------------"
+
+
+# Update playlist 
+echo -n "    Updating playlist..."
+if find /backup/media -iname \*.mp3 > /usr/local/icecast/conf/playlist.txt
+then
+        echo "Done"
+else
+        echo "There was an ERROR creating the playlist."
+fi
+
+
+# Launch Ices with the correct flags and pointing to the new playlist
+echo -n "    Launching ices..."
+echo "Done"
+echo "----------------------"
+echo "Ices Launcher Complete"
+echo ""
+
+/usr/local/icecast/bin/ices -S builtin -P playthis -n ' ' -r -s -F /usr/local/icecast/conf/playlist.txt
+	
+# bitrate control flag  -b 128
+exit 0

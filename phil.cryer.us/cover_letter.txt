@@ -1,0 +1,15 @@
+---COMPANY_NAME---
+---SUBMITED_EMAIL---
+---JOB_TITLE---
+
+I am applying for the position ---JOB_TITLE---, that I found listed on ---WEBSITE---. 
+
+---
+
+I would like to be considered since becoming a Linux System Administrator is my long term goal. I have been working with Linux since 1998, and have used it as my primary workstation since 2000. I have run Linux on servers providing web, email, CVS, DNS, chat, database as well as file and print services in corporate settings. Recently I have been using BSD for server applications and firewall services and have enjoyed learning these, but Linux still remains my primary operating system. I am very comfortable working exclusively within the command line, and am able to diagnose and fix server issues quickly. I monitor multiple security mailing lists, and give back to the community by contributing time and code to open source projects.
+
+---
+
+Attached, please find my resume for review. I would very much like to speak personally about this opportunity, thank you for your consideration.
+
+Phil Cryer

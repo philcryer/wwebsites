@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+#   Full Tilt - an mp3 playlist creator and launcher
+#   	* creates a complete and fresh mp3 playlist (playlist.txt) 
+#	* launches mpg123 and plays the list in random order
+#   Version 0.1  -  Copyright (C) 2003  Phil Cryer
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of the GNU General Public License
+#    as published by the Free Software Foundation; either version 2
+#    of the License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+
+# edit the following path to the base dir of your mp3s
+export MP3_PATH="~/mp3"
+
+echo ""
+echo "Full Tilt - an mp3 playlist creator and launcher"
+echo "------------------------------------------------"
+
+# Update playlist 
+echo -n "   Updating playlist..."
+if find $MP3_PATH -iname \*.mp3 > $MP3_PATH/playlist.txt
+then
+        echo "Done"
+else
+        echo "There was an ERROR creating the playlist."
+fi
+
+# Launch mpg123 with the correct flags and pointing to the new playlist
+echo "   Launching mpg123 with new playlist...Done"
+echo "------------------------------------------------"
+
+mpg123 -v -Z --list $MP3_PATH/playlist.txt 
+exit 0

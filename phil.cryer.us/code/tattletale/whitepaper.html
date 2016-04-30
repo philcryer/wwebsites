@@ -1,0 +1,122 @@
+<h2>Whitepaper</h2>
+<pre>
+Chapter 0: Abstract
+
+By utilizing client id characteristics of a users' web browsing session during a login attempt, we can more accurately determine that the user entering their userid and password is indeed that user, thus making the traditional user name, and password combo the equivalent of a screen door, which suits it well since it provides very little in the way of security today.  In verifying the users' characteristics in the background during every login, it causes the security relationship between the user and the server based application much stronger, without having the client install any additional software.
+
+
+Chapter 1: Introduction
+
+    What is the problem?
+
+The current state of logging into web services over the web (or a network) is broken and inherently insecure.  Only requiring a user name and password to identify a user leaves too few vectors to verify a user's credibility.  An attacker could 1) steal 2) socially engineer 3) guess the users credentials and quickly be passed off as said user.  There have already been papers written about the futility of so called two-factor-authentication, and the shell game the banking industry is currently playing with their customers.  A solution that increases the likelihood that the user is who they claim they are, without requiring the user to install anything additional, is possible, and would increase security by requiring a far greater degree of certainty.
+
+    Why is it important?
+
+While more and more people do business, check email and issue transactions online more often everyday, there have been few new methods of authentication for those users to authenticate against that doesn't require a substantial rollout and implementation by the issuing company and the user.  This gap not only threatens user's security, but leaves them open for thief of other user's accounts, fraud and identity thief of possibility any data existing on the same server or database.
+
+    What has been attempted?
+
+The most recent new solution implemented widely has been one more level of authentication whereas a user defined image is displayed that only the user knows (so called two-factor authentication) during the verification phase of the login.  This is a bad idea for a few reasons, in this case we are relying on the user to provide security (bad, bad idea) for the web application, and the fact that while this may seem like a clever solution, it's been proven to be possibly be less secure than the traditional user name and password method (as outlined in a the talk given at DefCon 15 [http://mmadan.wordpress.com/2007/08/10/bank-strong-authentication-schemes-are-fundamentally-flawed/]), and thus more hackable than the method they're trying to improve upon.  Other solutions such as shared key methods, or hardware based tokens are secure, but require the implementation and maintenance for all users by administrators, something that is not practical with a large, and/or, shifting roster of users.
+
+    What is central idea(s) of my approach?
+
+Our goal is to increase the security of all users, and allow the server to trust said user to a greater extent, as the user has transparently provided the server with far more correct details about their identity, all without having to install anything on their system for this protection.  All the heavy lifting is done server side acting on standard information has always been collected by webservers, during a standard web surfing.  The fact that the user is doing authentication makes no difference, as the same data is being transmitted, along with their username and password; it makes sense to tie these all together to create a profile for the user.
+
+
+Chapter 2: The Big idea
+
+In order to provide more security for the user, we need to add more layers of authentication without asking the user for anything more than their standard user name and password, and without having them install anything new on the client.  This information is gathered by sniffing the information defined by their browser when connecting to the web server.  Basically, by using already existing parameters that every web server requests and collects during each PUT response, we can tell a great deal about the individual user in order to determine to a greater probability that they are who they say they are.
+
+What could help identify them that the web server's logs could provide?
+
+	Operating System
+	Operating System, version
+	Browser
+	Browser, version
+	Source IP of the request
+	Geographical location of IP
+
+What else could simple scripts running on the server reveal from a user's browsing session?
+
+	Screen preferences (ie- 1280x1024, 24 bit color depth)
+	Referring page (ie- if they came to the page from a pre-defined launch page)
+	Source country that the IP is located in (fuzzy, but helpful to opt out certain domains like .cn)
+
+There are simple applications, which are nothing more than scripts, than can get all of this information for a user's session just by having them load the page, by simply embedding the code in the page they're submitting their login details from.
+
+Some PHP/Javascript examples.
+	http://www.webreference.com/tools/browser/javascript.html
+	http://phpsniff.sourceforge.net/
+	http://www.phpfreaks.com/quickcode/Sniff_a_Client_Browser_and_OS/35.php
+
+Once said data is captured, it would be encrypted via SHA1 and stored in any SQL database (MySQL, Postgres, DB2, Oracle, etc).  Simple JavaScript would facilitate the SHA1 on-the-fly encryption, (http://www.webtoolkit.info/javascript-sha1.html) before being entered into the DB - this way not even a systems administrator on the server would be able to reproduce a user's profile and imitate a user.
+
+
+Chapter 3 - Requirements and Implementation
+
+Requirements:
+	Software
+		Client
+       			Webbrowser with cookies and JavaScript enabled
+			No additional software needed other than what the user current accesses the server with
+		Server
+			Webserver
+			PHP
+			SQL Database (MySQL, Postgres, DB2, Oracle, etc)
+
+	Hardware
+		Client
+			Any computer capable or running a javascript enabled webbrowser
+		Server
+			Any standard server running Linux, OpenBSD, FreeBSD, AIX, Solaris, HP-UX, Apple's OS X
+
+Implementation:
+Configure launchpage to direct user's session to new login page
+Define new login page that includes PHP and/or Javascript to parse client's specific information via datapoints
+                Have a mechanism for the user to validate their current browser reported information into the database, have the database email them for confirmation of this change
+              Create database to house all client's data
+Direct all information collected by new login page to be SHA1 encrypted, and then entered into the users' database table
+Have an auth page after the login page that parses the client's session browsing information against the stored values in the database
+Have said page either direct user to secure landing page (success), or reject access if criteria is not met (failure)
+
+
+Chapter 4: Conclusion
+
+    Recapitulating what has been accomplished with this idea.
+
+By gathering more information for a system to authenticate a user against we can significantly improve the trust relationship since hacking would require far more detail than generally available.  By turning some data points on and off we can add another random variable to further reduce any hacking attempts.  Even if another user had the login page URL, the user's login name and password, another user could not login as that user, unless they were using the exact same system the user, logged in as the same user, that the real user was last using when visiting the site.  Credentials specific to the users' machine and preferences determine they are who they are on top of uname/passwd combos.
+
+One day at the office...
+
+Me: Hey you, I login to http://foo.com with username foo and password bar
+You: Oh yeah, I'm gonna login as you now from my computer, just watch...
+Me: Go for it!
+You: Hmm...hey wait, it says the admin has been contacted...WTF?  You must have given me the wrong username and password and are pulling a trick on me!  This isn't Halloween damnit!
+Me: Not true, let me show you from my computer how I login, feel free to shoulder surf to make sure I'm logging in from the URL with the same username and password that I told you I would.
+You: Ok, show me.
+Me: <logs in> There, see, all like I said.
+You: WTF?  You're tricking me, how did you do that?
+Me: It's all in the wrist.
+
+
+Chapter errata: Ideas for future work
+
+Make the authentication more flexible for mobile users by fine tuning the gathered information that the server places into the database, providing a separate table that allows an admin to set a percentage or weight for each characteristic to carry to determine if the client's ID was a match or not. (fuzzy authentication, ie- if overall matches are >=80% then it passes)
+
+Have the server deliver a cookie with the user's encrypted key once a user has successfully logged in twice, allowing the user to hold one more piece of authentication for the server to check for.
+
+Even bigger picture: knowing that authentication is a two way street, look at this from the reverse angle, we would have a user's session sniff for settings on the server to ensure they are on the proper server.  This would fight against phishing, DNS poisoning and man in the middle attacks.  Having a cookie set when the user first hits the site and sends their datapoints to the server would work, or have a Firefox plugin that works with the Firefox extension LiveHeaders for details of the target, authentication, server.
+
+
+References
+
+Understanding Login Authentication
+http://java.sun.com/j2ee/1.4/docs/tutorial/doc/Security5.html
+
+Ten Security Tips for WebLogin
+http://www.codeproject.com/gen/design/TenTipsForWebLogin.asp
+
+The World Wide Web Security FAQ
+http://www.w3.org/Security/Faq/</pre>
+</pre>

@@ -1,0 +1,22 @@
+
+
+INTERNET ===> DSL-Modem
+			  	\
+				 \
+				  +===> Wireless Router with a Four Port Hub
+				   	  \		                          	\
+                  			   \           	   		                 \
+           		        	    +~~~diego (workstation)	   +===> redeemer (backup server)
+		    			     \         		        		    \ 
+		    		 	      \                                              \
+		 		  	       +~~~nios (workstation)           +===> jorge (server)
+	             		                \                                               \
+    		            		         \ 			    	                 \
+			 		          +~~~maria (laptop)                   ++++> spotty (printer) 
+					  	   \			     
+			       			    \                         			
+			    			     +~~~rogue (laptop)
+
+
+
+		LEGEND:	  ~~~ 802.11b wireless    === Cat 5 ethernet    +++ USB 1.0

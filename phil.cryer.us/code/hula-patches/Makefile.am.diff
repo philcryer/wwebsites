@@ -1,0 +1,10 @@
+Index: import/libical/src/Makefile.am
+===================================================================
+--- import/libical/src/Makefile.am (revision 468)
++++ import/libical/src/Makefile.am (working copy)
+@@ -4,4 +4,4 @@
+LIBICALCAP_DIR =
+endif
+
+-SUBDIRS = libical libicalss $(LIBICALCAP_DIR) libicalvcal
++SUBDIRS = libical $(LIBICALCAP_DIR)

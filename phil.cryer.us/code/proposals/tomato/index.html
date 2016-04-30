@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<title>Proposal for accordion-style navigation for Tomato</title>
+
+<script type="text/javascript" src="mootools.js"></script>
+<script type="text/javascript">
+var accordion;
+var accordionTogglers;
+var accordionContents;
+
+window.onload = function() {
+	accordionTogglers = document.getElementsByClassName('accToggler');
+	
+	accordionTogglers.each(function(toggler){
+		//remember the original color
+		toggler.origColor = toggler.getStyle('background-color');
+		//set the effect
+		toggler.fx = new Fx.Color(toggler, 'background-color');
+	});
+	
+	accordionContents = document.getElementsByClassName('accContent');
+		
+	accordion = new Fx.Accordion(accordionTogglers, accordionContents,{
+		//when an element is opened change the background color to blue
+		onActive: function(toggler){
+			toggler.fx.toColor('#7A7A7A');
+		},
+		onBackground: function(toggler){
+			//change the background color to the original (green) 
+			//color when another toggler is pressed
+			toggler.setStyle('background-color', toggler.origColor);
+		}		
+	});
+}
+</script>
+
+<style type="text/css">
+body{
+	font-size:13px;
+	font-family:"Lucida Grande", Arial, sans-serif;
+	color:#6d6d6d;
+	margin-left: 10;
+}
+a, a:visited{
+	font-family:"Lucida Grande", Arial, sans-serif; color:#6d6d6d;
+}
+.accToggler{
+	margin: 2px;
+	margin-left: 35px;
+	padding: 3px;
+	width: 130px;
+	background: #acc95f;
+	color: #f4f4f4;
+	border: 1px solid #fff;
+	cursor: pointer;
+}
+.accContent{
+	margin: 3px;
+	margin-left: 45px;
+	width: 130px;
+}
+</style>
+
+</head>
+<body>
+	<h2>Proposal for accordion-style navigation for Tomato</h2>
+		<p style="margin:15px; width:95%;">
+<a href="http://www.polarcloud.com/tomato">Tomato</a> is an Open Source replacement firmware for Linksys', and other Broadcom-based, routers. Besides offering more advanced networking features, it has a web gui for administration. The gui is driven by a <a href="http://www.polarcloud.com/img/ssbn100.png">static left side menu</a> that is permanently expanded, causing it to scroll off the screen.  From a usability standpoint this can be improved.
+<br /><br />My proposal expands on the AJAX-ing of the administration GUI by presenting the user with an 'accordion' style menu that expands and contracts depending on which section the user requests. Notice that I have combinded some commands under 'Router Commands' and that the menus 'Access Restriction' and 'About' have no child nodes, but are still linkable, and change color when selected. The code is valid <a href="http://validator.w3.org/check?uri=referer">XHTML 1.0 Strict</a>, although it has an IE6 issue which will need to be addressed if accepted. Created on 07/2007 by <a href="http://phil.cryer.us">Phil Cryer</a>, utilizing style from <a href="http://www.solutoire.com/experiments/mootools/acc_ex3.html">solutoire.com</a> and javascript from <a href="http://www.mootools.net/">Mootools</a>. (46KB uncompressed)</p> 
+<hr />
+		<p style="margin: 10px auto; width: 130px;"></p>
+	<p style="background-color: #af4141" class="accToggler">Status</p>
+	<p style="overflow: hidden; height: 98px; visibility: visible; opacity: 1;" class="accContent">
+Overview<br />
+Device List<br />
+Logs<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">Bandwidth</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Real-Time<br />
+Last 24 Hours<br />
+Daily<br />
+Weekly<br />
+Monthly<br />
+</p>
+		<p style="background-color: #af4141" class="accToggler">Tools</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Ping<br />
+Trace<br />
+Wireless Survey<br />
+WOL<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">Basic</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Network<br />
+Identification<br />
+Time<br />
+DDNS<br />
+Static DHCP<br />
+Wireless Filter<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">Advanced</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Conntrack / Netfilter<br />
+DHCP / DNS<br />
+Firewall<br />
+MAC Address<br />
+Miscellaneous<br />
+Routing<br />
+Wireless<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">Port Forwarding</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Basic<br />
+DMZ<br />
+Triggered<br />
+UPnP<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">QoS</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Basic Settings<br />
+Classification<br />
+View Graphs<br />
+View Details<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">Access Restriction</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+</p>
+
+	<p style="background-color: #af4141" class="accToggler">Administration</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Admin Access<br />
+Bandwidth Monitoring<br />
+Buttons / LED<br />
+CIFS Client<br />
+Configuration<br />
+Debugging<br />
+JFFS2<br />
+Logging<br />
+Scripting<br />
+Upgrade<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">Router Commands</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Reboot...<br />
+Shutdown...<br />
+Logout<br />
+</p>
+	<p style="background-color: #af4141" class="accToggler">About</p>
+	<p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+</p>
+</body></html>

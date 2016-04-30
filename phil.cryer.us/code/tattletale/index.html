@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Project Tattletale</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script type="text/javascript" src="js/ajaxtabs.js"></script>
+</head>
+
+<body>
+
+<div id="pageContainer">
+
+	<div id="pageHeader">
+		<h1>Project Tattletale</h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a glimmer of hope for secure web logins
+	</div>
+
+	<div class="navigation" id="pagetabs">
+		<a href="abstract.html" rel="#default">Home</a>|<a href="whitepaper.html" rel="pagedivcontainer">Whitepaper</a>|<a href="demos.html" rel="pagedivcontainer">Demos</a>|<a href="downloads.html" rel="pagedivcontainer">Downloads</a>|<a href="license.html" rel="pagedivcontainer">License</a>|<a href="contact.html" rel="pagedivcontainer">Contact</a>
+	</div>
+
+	<div id="pageBody">
+	<div id="pagedivcontainer"> 
+		<h2>The Project</h2>
+		<p>I've always said that web logins are broken by today's standards, and don't provide enough security.  Having SSL encrypt the transactions works around the problem, but doesn't solve it.  Project Tattletale aims to allow for secure transactions of username and passwords for authentication, as well as verifying the user against browser revealed system information.  All of this without the user needing to do or install anything additional.</p>
+
+		<h2>News</h2><br />
+		2008<br /><br />
+		&#149; Mar  -  Project submitted for consideration in <a href="http://defcon.org/">DefCon 16</a>
+		<br /><br />
+		&#149; Feb  -  Code cleanup, demos more fleshed out, release planned for 2008 Q2
+		<br /><br />
+		2007<br /><br />
+		&#149; Nov  -  Demos for login and brower detail detection online
+		<br /><br />
+		&#149; Oct  -  License defined (GPL)
+		<br /><br />
+		&#149; Sep  -  Site launched, whitepaper published
+		<br /><br />
+		&#149; Aug  -  After a fun and fruitfull DefCon, I formed an idea to simplify and secure web/network logins
+		<br /><br />
+	</div>
+
+<script type="text/javascript">
+	var pages=new ddajaxtabs("pagetabs", "pagedivcontainer")
+	pages.setpersist(true)
+	pages.setselectedClassTarget("link") //"link" or "linkparent"
+	pages.init()
+</script>
+
+<br />
+
+	<div class="footer"> 
+		created by Phil Cryer &copy; 2007 - 2008 :: valid <a href="http://validator.w3.org/check?uri=referer">xhtml</a>
+	</div>
+
+</div>
+</div>
+</body>
+</html>

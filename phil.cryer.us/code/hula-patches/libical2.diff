@@ -1,0 +1,19 @@
+Index: include/libical2.h
+===================================================================
+--- include/libical2.h	(revision 292)
++++ include/libical2.h	(working copy)
+@@ -1189,10 +1189,10 @@
+ } ICal2Token;
+ 
+ /* ical2.c */
+-HulaKeywordIndex *ICal2ParameterIndex;
+-HulaKeywordIndex *ICal2RecurIndex;
+-HulaKeywordIndex *ICal2PropertyIndex;
+-HulaKeywordIndex *ICal2ComponentIndex;
++extern HulaKeywordIndex *ICal2ParameterIndex;
++extern HulaKeywordIndex *ICal2RecurIndex;
++extern HulaKeywordIndex *ICal2PropertyIndex;
++extern HulaKeywordIndex *ICal2ComponentIndex;
+ 
+ extern ICal2Token ICal2ParameterTokens[];
+ extern ICal2Token ICal2RecurTokens[];

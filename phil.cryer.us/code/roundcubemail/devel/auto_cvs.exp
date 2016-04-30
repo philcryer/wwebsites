@@ -1,0 +1,6 @@
+#!/usr/local/bin/expect --
+spawn cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/roundcubemail login
+expect "CVS password:"
+send "\r"
+spawn cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/roundcubemail co -P roundcubemail
+expect eof

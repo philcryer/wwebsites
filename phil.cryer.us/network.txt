@@ -1,0 +1,70 @@
+INTERNET
+
+|
+|
+|
+V
+
+DSL Modem
+
+|
+|
+|
+V
+
+VoIP Modem
+
+|
+|
+|
+V
+
+***** bluebox (router) *****
+|
+|\
+| \
+|  + server (pepe)
+|   \
+|    \
+|     + backup server (jorge)
+|
+|
+***** la_familia (wireless router) *****
+
+.
+.
+.
+v
+
++ MariaEscula (laptop)
+
+.
+.
+.
+v
+
++ nios (imac)
+
+.
+.
+.
+v
+
++ rouge (laptop)
+
+.
+.
+.
+v
+
++ diego (desktop)
+
+.
+.
+.
+v         
+         
+***** spotty (wireless router/print-server) *****
+|
+|
++ spots (printer)

@@ -1,0 +1,62 @@
+HOWTO Install Fedora-Commons on Debian Lenny (testing) (with mysql, tomcat and solr)
+
+1) install mysql, tomcat, solr-common (you'll need Sun repositories for java, else dnld install manually)
+	apt-get install sun-java6-jdk mysql tomcat5.5 solr-common
+
+2) in mysql, create a database called fedora, remember the name/passwd you used to create that
+
+2) populate a file with the following (notice Debian uses 8180/8009 for default ports in tomcat!)
+fedora.serverHost=localhost
+keystore.file=included
+tomcat.http.port=8180
+apia.auth.required=false
+tomcat.ssl.port=8443
+ssl.available=false
+deploy.local.services=true
+tomcat.shutdown.port=8009
+messaging.enabled=false
+ri.enabled=true
+xacml.enabled=true
+database.driver=included
+database=mysql
+database.mysql.jdbcDriverClass=com.mysql.jdbc.Driver
+database.jdbcDriverClass=com.mysql.jdbc.Driver
+database.mysql.jdbcURL=jdbc\:mysql\://localhost/fedora?useUnicode\=true&amp;characterEncoding\=UTF-8&amp;autoReconnect\=true
+database.jdbcURL=jdbc\:mysql\://localhost/fedora?useUnicode\=true&amp;characterEncoding\=UTF-8&amp;autoReconnect\=true
+database.password=********
+database.mysql.driver=included
+database.username=root
+rest.enabled=true
+install.type=custom
+fedora.home=/opt/fedora
+tomcat.home=/usr/share/tomcat5.5
+servlet.engine=existingTomcat
+fedora.admin.pass=fedoraAdmin
+apim.ssl.required=false
+apia.ssl.required=false
+	vi installer.properties
+
+3) install fedora using that file to answer the installer's questions 
+	java -jar fedora-3.0-installer.jar installer.properties
+
+4) backup the dist copy of server.xml, then copy in the one from fedora into the existing tomcat
+	mv /etc/tomcat5.5/server.xml /etc/tomcat5.5/server.xml.dist
+	cp /opt/fedora/tomcat/conf/server.xml /etc/tomcat5.5
+
+5) edit /etc/default/tomcat5.5
+	#JAVA_HOME=/usr/lib/jvm/java-1.5.0-sun
+	JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.07
+
+6) edit /etc/init.d/tomcat5.5
+ 	#Added for the Fedora Commons Repository
+	FEDORA_HOME=/opt/fedora
+	export FEDORA_HOME
+	PATH=$FEDORA_HOME/server/bin:$FEDORA_HOME/client/bin:$JAVA_HOME/bin:/bin:/usr/bin:/sbin:/usr/sbin
+
+	# Use the Java security manager? (yes/no)
+	TOMCAT5_SECURITY=no
+
+7)
+
+
+

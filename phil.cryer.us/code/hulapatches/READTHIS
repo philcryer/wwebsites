@@ -1,0 +1,84 @@
+
+gethula 
+
+
+DESCRIPTION
+	gethula - checks out and builds current Hula codebase
+		(see http://www.hula-project.com/ for information)
+
+
+USAGE
+	To use gethula, after unpacking, type the following:
+      		cd gethula
+ 		vi gethula (modify variables at the top to suit your system)	
+      		chmod a+x gethula
+		su - root (if required)
+      		./gethula
+
+	If you already have a Hula server running, stop Hula:
+		cd <hula_prefix>/sbin
+		./hulamanager -s (wait for all processes to stop)
+		mv <hula_prefix> <hula_prefix>-old
+
+	If you do not have a Hula server running, or if you've stopped Hula, install Hula:
+		./gethula
+
+	If you have an existing Hula server, copy over all prefs and mail into the new Hula:
+		cd <hula_prefix>-old 
+		cp -R var/mdb/tree/context/* <hula_prefix>/var/mdb/tree/context/
+		cp -R var/mail/netmail/users/* <hula_prefix>/var/mail/netmail/users/
+	
+	Start Hula:
+		cd <hula_prefix>/sbin
+		./hulamanager -d
+
+		NOTICE: I'll be adding code to automate those backup steps, for the brave!
+
+REQUIREMENTS
+	gethula was developed and tested on FreeBSD (5.4-RELEASE, 6.0-SNAP004), but it will 
+	run on any UNIX as long as you have the following installed:
+		svn (client)
+		expect
+		additional packages that Hula requires to build
+
+
+MOTIVATION
+	One of the motivations for this script (besides staying up to date) was to contribute
+	to the project, while ensuring that the current SVN code would run on FreeBSD, as 
+	patches are required.  All needed patches are included, and are automatically applied 
+	if the script is run on FreeBSD.  Of course the MAIN motivation for this was to run
+	the Hula calendar and mail server.  It's the best such app available, and I see it 
+	expanding very rapidly; my hope is that I (even in a small way) help towards this goal.
+
+
+LICENSE
+	GPL v2 - see LICENSE for full details
+
+
+RESOURCES
+	Hula	
+		http://www.hula-project.com/ 
+	Mailing-lists
+		http://www.hula-project.com/Mailing_Lists 
+	IRC
+		server: irc.freenode.net	
+		channel: #hula
+
+		
+FEEDBACK
+	Email 	
+		phil@cryer.us
+	Web
+		http://cryer.us/phil/code/gethula/
+	Mailing Lists	
+		http://www.hula-project.com/Mailing_Lists
+	IRC
+		server: irc.freenode.net	
+		channel: #hula
+		nick: fak3r
+
+
+Thanks to all involved at Novell, the coders, others involved in the codes' develpoment, 
+and of course, all on IRC, mailing lists and eleswhere for their support of this awesome 
+calendar and mail server. (Bring on 1.0!)
+

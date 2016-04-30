@@ -1,0 +1,295 @@
+#! /usr/bin/ksh
+
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of the GNU General Public License
+#    as published by the Free Software Foundation; either version 2
+#    of the License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+
+# variables - salt to taste
+CVS_ADMIN="cvs"
+CVS_GROUP="cvs"
+DEFAULT_PASSWD="CHANGEME"
+
+# amenu() defines a function to display a simple menu
+amenu () {
+# clear the screen
+clear
+echo `date`  -  `hostname`
+echo
+echo "C.A.R.L.	(Cvsnt Acl Repository Lacky)"
+echo
+echo "Current Directory: $CUR_DIR"
+echo "Current Group: $CUR_GRP"
+echo
+echo "	(D) Define Directory"
+echo "	(d) Define Group"
+echo "	(cvs) Login to CVS Repository" 
+echo "	--------------------------------------------------------------"
+echo "	(L) List existing ACL for current directory and recursively"
+echo "	(l) List existing ACL for current directory"
+echo ""
+echo "	(A) Add Group to Directory"
+echo "	(a) Delete Group from Directory"
+echo "	(M) Modify or add CVS Groups"
+echo ""
+echo "	(R) Grant Group Read for Directory"
+echo "	(r) Remove Group Read for Directory"
+echo "	(G) Grant Group Read/Write for Directory"
+echo "	(g) Remove Group Read/Write for Directory"
+echo "	(C) Grant Group Create for Directory"
+echo "	(c) Remove Group Create for Directory"
+echo "	(T) Grant Group Tag for Directory"
+echo "	(t) Remove Group Tag for Directory"
+echo "	(X) Grant Group Read/Write/Commit/Tag for Directory"
+echo "	(x) Remove Group Read/Write/Commit/Tag for Directory"
+#echo "	--------------------------------------------------------------"
+#echo "	(N) Modify or add CVS Groups"
+#echo "	(n) Add a New CVS User"
+#echo "	(u) Change existing CVS User's passwd"
+echo "	--------------------------------------------------------------"
+echo "	(q) Quit"
+echo ""
+echo "Enter select and press ENTER"
+}
+ 
+# A function that asks the user to press enter
+# and waits for the ENTER Key
+PressEnter () {
+echo Press Enter
+read x
+}
+ 
+# A function for each of the menu picks
+setDirectory () {
+echo ""
+echo "Enter Directory for ACL and press Enter"
+read CUR_DIR
+}
+ 
+setGroupid () {
+echo ""
+echo "Enter Group for ACL and press Enter"
+read CUR_GRP
+}
+ 
+listAcl () {
+echo ""
+cvs co $CUR_DIR
+clear
+echo "------------------------------------------"
+cvs lsacl -d $CUR_DIR
+echo "------------------------------------------"
+PressEnter
+}
+
+listAcll () {
+echo ""
+cvs co $CUR_DIR
+clear
+echo "------------------------------------------"
+cvs lsacl -R -d $CUR_DIR
+echo "------------------------------------------"
+PressEnter
+}
+
+addAcl () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -R -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+	
+removeAcl () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -d -R -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+ 
+
+grantAclread () {
+echo ""
+cvs co $CUR_DIR
+cvs chacl -a read -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+
+removeAclread () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -a noread -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+
+grantAclreadwrite () {
+echo ""
+cvs co $CUR_DIR
+cvs chacl -a read,write -n -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+
+removeAclreadwrite () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -u $CUR_GRP -d $CUR_DIR
+PressEnter
+}
+
+grantAclcreate () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -a create -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+
+removeAclcreate () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -u $CUR_GRP -d $CUR_DIR
+PressEnter
+}
+
+grantAcltag () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -a tag -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+
+removeAcltag  () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -u $CUR_GRP -d $CUR_DIR
+PressEnter
+}
+
+grantAclrwct () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -a read,write,create,tag,control -u $CUR_GRP $CUR_DIR
+PressEnter
+}
+
+removeAclrwct () {
+echo ""
+cvs co $CUR_DIR
+cvsnt chacl -u $CUR_GRP -d $CUR_DIR
+PressEnter
+}
+
+loginCVS () {
+echo ""
+cvs login	
+PressEnter
+}
+
+newCvsuser () {
+echo ""
+echo "Name of new user"
+read CUR_USR
+cp `echo $CVSROOT | cut -f4 -d ':'`/CVSROOT/passwd `echo $CVSROOT | cut -f4 -d ':'`/CVSROOT/passwd.`date +%F`-`date +%N`
+chmod g+w `echo $CVSROOT | cut -f4 -d ':'`/CVSROOT/passwd
+echo $CUR_USR:`/export/home/cvs/bin/cryptout.pl`:cvs >> `echo $CVSROOT | cut -f4 -d ':'`/CVSROOT/passwd
+chmod g-w `echo $CVSROOT | cut -f4 -d ':'`/CVSROOT/passwd
+echo "User $CUR_USR added to CVS - random password assinged"
+PressEnter
+}
+
+modifyCvsgroup () {
+echo ""
+cvs co CVSROOT
+cd CVSROOT
+vi group
+cvs commit -m "Modified by $CVS_ADMIN to add $CUR_USR on `date`" group
+cd -
+PressEnter
+}
+
+changeCvspass () {
+echo ""
+echo "Option not yet implemented"
+PressEnter
+echo "Name of user for password change"
+read CUR_USR2
+cvsnt passwd -a $CUR_USR2
+PressEnter
+}
+
+verify () {
+me=`/usr/ucb/whoami`
+if [ "$me" != "cvs" ]; then 
+	echo ""
+	echo "	!!!! Program must be run as user cvs! Current user is: $me" >&2
+	echo ""
+	exit 1
+fi
+if [ ! "${CVSROOT}" ]; then
+	echo ""
+	echo "	!!!! Variable CVSROOT is not defined, define it and run again." 
+	echo ""
+	exit 1 
+fi
+mkdir ~/cvs
+cd ~/cvs
+}
+ 
+verify 
+
+# The main logic for the program displays the menu
+# gets the users entry and initiates the activity
+
+while  true
+do
+# 1. display the menu
+amenu
+
+# 2. read a line of input from the keyboard
+read answer
+
+# 3. Execute one of the defined functions based on the
+#    number entered by the user.
+ 
+case $answer in
+       	D) setDirectory ;;
+       	d) setGroupid ;;
+	cvs) loginCVS ;;
+	L) listAcll ;;
+       	l) listAcl ;;
+        A) addAcl ;;
+	a) removeAcl ;;
+	R) grantAclread ;;
+	r) removeAclread ;;
+	G) grantAclreadwrite ;;
+	g) removeAclreadwrite ;;
+	C) grantAclcreate ;;
+	c) removeAclcreate ;;
+	T) grantAcltag ;;
+	t) removeAcltag ;;
+	X) grantAclrwct ;;
+	x) removeAclrwct ;;
+	M) modifyCvsgroup ;;
+#	n) newCvsuser ;;
+#	u) changeCvspass ;;
+ 
+#      If the user selects q to quit then break out
+#      of this loop
+       q) break ;;
+   esac
+ 
+#     Do it again until the user enters 0.
+done
+ 
+# Clear the screen on the way out
+clear
+

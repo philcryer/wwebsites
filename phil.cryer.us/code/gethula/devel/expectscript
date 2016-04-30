@@ -1,0 +1,18 @@
+#!/usr/local/bin/expect -f
+
+spawn svn --password anonymous co svn+ssh://anonymous@forgesvn1.novell.com/svn/hula/trunk/hula
+
+expect {
+    Password: {
+        send anonymous\n
+        exp_continue
+    }
+    A {
+        exp_continue
+    }
+    "(yes/no)" {
+        send yes\n
+        exp_continue
+    }
+}
+

@@ -1,0 +1,27 @@
+
+
+getmoz - version 1.1
+
+getmoz will download and install Mozilla nightly builds while archiving 
+your old nightly and keeping your current plugins/searchplugins intact.
+
+
+
+DIRECTIONS
+
+To install getmoz, at a command prompt, type the following:
+	su root
+      	cd getmoz-1.1
+      	chmod a+x install.sh
+      	./install.sh
+
+Once installed, to run getmoz, as a normal user at a command prompt, type the following:
+        getmoz
+
+To uninstall getmoz, at a command prompt, type the following:
+	su root
+      	cd getmoz-1.1
+      	chmod a+x uninstall.sh
+      	./uninstall.sh
+
+

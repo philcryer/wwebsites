@@ -1,0 +1,98 @@
+#!/bin/sh
+##########################################################
+# Change variables to suit your system
+##########################################################
+#
+# base directory for your install (the directory right abouve roundcubemail)
+BASE_DIR=/usr/local/www/data-dist
+#
+# set webserver username
+WEB_USER=www
+#
+# set webserver group
+WEB_GROUP=www
+#
+# script directory (only change this if auto_cvs isn't in the same directory)
+CUR_DIR=${PWD}
+#
+# define start time (don't change)
+START_TIME=`date`
+#
+##########################################################
+clear; echo ""
+echo " +----------------------------------------------------------------+" 
+echo " |  getround.sh - gets & installs cvs roundcubewebmail            |"
+echo " +----------------------------------------------------------------+" 
+echo; echo "	* Verifying that required programs are present..."
+##
+## Verify required commands are executeable
+##
+cvs > /dev/null 2>&1
+if [ "$?" -ne "1" ]; then
+	echo "	* CVS not found - please install and run again"
+	exit 1
+else
+	echo "	* CVS found and in user's path, continuing..."
+fi
+#
+expect -v > /dev/null 2>&1
+if [ "$?" -ne "0" ]; then
+	echo "	* EXPECT not found - please install and run again"
+	exit 1
+else
+	echo "	* EXPECT found and in user's path, continuing..."
+fi
+exit 0
+##
+## Verify required variables are in place and build directory is ready
+##
+if [ ! "$BASE_DIR" ]; then
+  echo "BASE_DIR not defined!" >&2
+  exit 1
+fi
+if ! [ -d ${BASE_DIR} -a -r ${BASE_DIR} -a -w ${BASE_DIR} ]; then
+	    echo ""
+	    echo "  **** Your set install directory ${BASE_DIR}"
+	    echo "  **** doesn't exist or isn't readable and writeable"
+	    echo "  **** Please create this directory manually, or set" 
+	    echo "  **** the variable to another location."
+	    echo ""; exit 1
+	fi
+##
+## define getround function
+##
+func_getround()
+{
+	echo "	* Getround starting..." 
+	echo "	* Changing into install directory..."
+	cd $BASE_DIR
+	echo "	* Doing CVS checkout..."
+	/usr/local/bin/expect ${CUR_DIR}/auto_cvs.exp
+	echo "	* Changing into roundcubemail directory..."
+	cd roundcubemail
+	echo "	* Verifying directories exist..."
+	if [ ! -d temp ]; then 
+		echo " * Directory temp does not exist. Creating..."
+		mkdir -p temp
+	fi
+	if [ ! -d logs ]; then 
+		echo " * Directory logs does not exist. Creating..."
+		mkdir -p logs
+	fi
+	echo "	* Setting directory permissions..."
+	chown -R ${WEB_USER}:${WEB_GROUP} temp
+	chown -R ${WEB_USER}:${WEB_GROUP} logs
+}
+##
+## Define what needs to be executed
+##
+func_getround
+##
+## Fin
+##
+END_TIME=`date`
+echo "	* Getround completed..." 
+echo "	* Getround ran from..."
+echo "   ${START_TIME} to ${END_TIME}"
+echo " +----------------------------------------------------------------+" 
+exit 0 

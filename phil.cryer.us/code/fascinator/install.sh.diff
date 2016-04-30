@@ -1,0 +1,26 @@
+34,36d33
+< 	# 20080926 (pc) For Debian
+<         elif [ -f /etc/debian_version ] ; then
+<                 OSNAME="debian" 
+60,63c57
+< 	#REAL_USER=$SUDO_USER
+< 	# 20080926 (pc) I don't use sudo, this will just find the user to be 'root' 
+< 	# need something better here, prompt for username? auto create one on the fly?
+< 	REAL_USER=`id | cut -d'(' -f3 | cut -d')' -f1`
+---
+> 	REAL_USER=$SUDO_USER
+127,129c121
+< 	#read -s -p "Enter the Fedora administrator (fedoraAdmin) password: " FEDORA_PASSWORD
+< 	# 20080926 (pc) this failed for me, works as -sp. Debian specific? Need to test in Red Hat/etc
+< 	read -sp "Enter the Fedora administrator (fedoraAdmin) password: " FEDORA_PASSWORD
+---
+> 	read -s -p "Enter the Fedora administrator (fedoraAdmin) password: " FEDORA_PASSWORD
+138c130
+< 	read -sp "Enter the Solr administrator (solrAdmin) password: " SOLR_PASSWORD
+---
+> 	read -s -p "Enter the Solr administrator (solrAdmin) password: " SOLR_PASSWORD
+197,200d188
+< 	# 20080926 (pc) added Debian block, I have 1.6 installed
+< 	elif [ "$OSNAME" = "debian" ] ; then
+< 		JAVA_HOME="/usr/lib/jvm/java-6-sun-1.6.0.07"
+< 		apt-get -y install sun-java6-jdk

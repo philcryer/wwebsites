@@ -1,0 +1,52 @@
+C.A.R.L. 
+(Cvsnt Acl Repository Lacky)
+------------------------------------------
+CARL is korn shell script that presents a menu driven frontend for 
+cvsnt ACL (access control lists) configuration. developed in order 
+to update a corporate client to cvsnt and apply a sane way for 
+non-technical personel to configure and maintain cvs permissions.  
+
+
+requirements
+------------------------------------------
+cvsnt (client/server)
+korn shell
+UNIX (tested on Solaris and FreeBSD but Linux/AIX/HP-UX/OSX will work)
+a sense of humor
+
+
+usage
+------------------------------------------
+tar -xf carl*.tar
+chmod 755 carl
+(edit variables in head of script)
+./carl
+press D to define directory
+press d to define group
+use as descibed
+
+
+feedback
+------------------------------------------
+phil@cryer.us
+
+
+thanks
+------------------------------------------
+to everyone on the cvsnt mailing lists for all of their help, gracias.
+
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+
+
+
+
+
+
+
+
+42

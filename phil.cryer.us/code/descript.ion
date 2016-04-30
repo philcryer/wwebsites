@@ -1,0 +1,28 @@
+.	This folder contains releases of my scripts and programs, some packed form. They are all GPL v2, so feel free to take/use/whatever.
+dotfiles contains various config dotfiles I've used/created for Unix cli fun
+archive	contains older versions of my scripts
+source	contains the color-coded source code of some of the programs here
+botproofemail_31.zip	latest Version of Botproof Email (3.0)
+browseremulator_20.zip	latest Version of Browser Emulator (2.0)
+dbtool.zip	simple one-file mySQL database tool
+EasySMTPConnection.jar	an easy to use Java SMTP client class
+feedcreator_171.zip	an extensible RSS/ATOM/OPML creator for PHP
+gpl.txt	the GNU General Public License, version 2
+kochbuch.zip	(german) eine Rezeptdatenbank für den lokalen Webserver
+list.zip	PHP mailing list script which acts like MAJORDOMO
+list_readme.txt	readme file for PHP mailing list
+MovieLauncher_101.zip	latest version of MovieLauncher (1.01)
+MovieLauncher_101_src.zip	source code of MovieLauncher 1.01
+msql_dbtool.zip	msql version of the mysql database tool
+nntp2rss_14.zip	latest version of nntp2rss
+PHP_vCard_20.zip	latest version of PHP vCard class (2.0)
+popplet.html	Popplet demo page
+popplet.jnlp	Popplet Java Webstart
+descript.ion	the file containing these descriptions
+Popplet_javamail.jar	binary distribution of Popplet, including necessary classes from JavaMail
+pseudo-cron_13.zip	latest version of Pseudo-cron
+RBLChecker.jar	an easy to use Java class to check mail servers on realtime blackhole lists
+SnailProxy.jar	lets you simulate a slow modem connection
+snif_151.zip	latest version of snif, a Simple and Nice Index File, which has also created this listing
+snif_toc.zip	displays a table of contents for a snif-managed directory and its subdirectories
+SplashBitmap.jar	Java class that displays a bitmap as a splash screen, can be configured for timeout, click etc.

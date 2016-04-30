@@ -1,0 +1,13 @@
+Index: import/libical/configure.in
+===================================================================
+--- import/libical/configure.in (revision 468)
++++ import/libical/configure.in (working copy)
+@@ -296,8 +296,6 @@
+src/libical/Makefile
+src/libical/icalversion.h
+src/libicalcap/Makefile
+-src/libicalss/Makefile
+-src/libicalvcal/Makefile
+test-data/Makefile
+zoneinfo/Makefile
+])

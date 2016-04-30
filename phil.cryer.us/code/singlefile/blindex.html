@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>Project Singlefile</title>
+<style href="tabcontent.css" type="text/css" />
+<script type="text/javascript" src="tabcontent.js"></script> 
+</head><body>
+
+<div id="pageContainer">
+
+	<div id="pageHeader">
+		<h1>Project Singlefile</h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a one file website; keep it simple stupid
+	</div>
+
+	<div class="navigation" id="pagetabs">
+		<a class="selected" href="index.html" rel="#default">Home</a>|
+		<a class="" href="index.html#two">Page 2</a>|
+		<a class="" href="whitepaper.html" rel="pagedivcontainer">Whitepaper</a>|
+		<a class="" href="demos.html" rel="pagedivcontainer">Demos</a>|
+		<a class="" href="downloads.html" rel="pagedivcontainer">Downloads</a>
+	</div>
+
+	<div id="pageBody">
+
+	<div id="pagedivcontainer" alt="two"> 
+		<h2>The Project</h2>
+		<p>I've
+always said that web logins are broken by today's standards, and don't
+provide enough security. Having SSL encrypt the transactions works
+around the problem, but doesn't solve it. Project Tattletale aims to
+allow for secure transactions of username and passwords for
+authentication, as well as verifying the user against browser revealed
+system information. All of this without the user needing to do or
+install anything additional.</p>
+
+		<h2>News</h2>
+		<p>&gt;&gt; 10/26 Demos for login and brower detail detection online</p>
+		<p>&gt;&gt; 10/22 License defined (GPL)</p>
+		<p>&gt;&gt; 10/20 Site launched, whitepaper published</p>
+
+	</div>
+
+<script type="text/javascript">
+	var pages=new ddajaxtabs("pagetabs", "pagedivcontainer")
+	pages.setpersist(true)
+	pages.setselectedClassTarget("link") //"link" or "linkparent"
+	pages.init()
+</script>
+
+<br />
+
+	<div class="footer"> 
+	 	{	code by <a href="http://phil.cryer.us/code/singlefile/">project singlefile</a> :: valid <a href="http://validator.w3.org/check?uri=referer">xhtml 1.0 strict</a>, <a href="http://jigsaw.w3.org/css-validator/">css level 2.1</a> }
+	</div>
+
+</div>
+</div>
+</body></html>
+

@@ -1,0 +1,20 @@
+
+#!/bin/bash
+#
+#
+
+
+#
+# CONFIGURATION - The following can be changed the following to match your configuration
+#
+
+#
+# START SCRIPT
+#
+
+# Kill Mozilla 
+echo -n '   Killing Mozilla...'
+kill `ps auxww | grep mozilla | egrep -v grep | awk '{print $2}'`
+echo 'Done'
+
+exit 0

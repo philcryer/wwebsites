@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="copy.xsl"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  <head>
+  
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta name="author" content="Phil Cryer" />
+    <meta name="abstract" content="A short description of your site." />
+    <meta name="description" content="A longer description of your site." />
+    <meta name="keywords" content="some, words, characterising, your, web, site" />
+    <meta name="distribution" content="global" />
+    <meta name="revisit-after" content="1 days" />
+
+<title>Phil Cryer</title>	
+   
+    <!--<script type="text/javascript" src="js/ajaxtabs.js"></script>-->
+
+    <style type="text/css" title="The shiny, Web 2.0 version of 'Simplicity,' a pseudo-professional style-sheet." media="all">
+      @import "css/simplicity_two_point_oh.css";
+    </style><!--[if lte IE 6]>
+        <style type="text/css" media="all">
+          @import "css/ie6_diff.css";
+        </style>
+        <![endif]--><!--[if gt IE 6]>
+        <style type="text/css" media="all">
+          @import "css/ie7_diff.css";
+        </style>
+        <![endif]-->
+    
+    
+
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <link rel="icon" href="../images/favicon.ico" />
+
+	</head><body>
+    
+    <div id="window">
+
+      <div id="container">
+
+	<div class="navigation">
+		<ul id="maintab">
+	    		<li class="active"><span>Main</span></li>
+	    		<li><a href="html/art.html" rel="ajaxcontentarea">Art</a></li>
+	    		<li><a href="html/music.html" rel="ajaxcontentarea">Music</a></li>
+	    		<li><a href="html/geek.html" rel="ajaxcontentarea">Geek</a></li>
+	    		<li><a href="html/photos.html" rel="ajaxcontentarea">Photos</a></li>
+	    		<li><a href="html/contact.html" rel="ajaxcontentarea">Contact</a></li>
+	    		<li><a href="html/about.html" rel="ajaxcontentarea">About</a></li>
+	  	</ul>
+	</div>
+
+	<div class="main">
+
+	  <div class="outer-prettification">
+
+	    <div class="inner-prettification">
+	      
+	      	<div class="header">
+		<h1 class="title"><a href="html/main.html">Phil Cryer</a></h1>
+	      	</div>
+
+<h2>It was like that when I got here</h2>
+	      
+	      	<div class="contents">
+		<p><img src="images/space_invader.gif" class="right" alt="Space Invader" />Hi,
+I'm Phil and you've reached my little corner of the web. Take a look
+around to see what I'm all about. To get in touch with me for
+professional services I provide, please refer to the <a href="html/contact.html">contact page</a>.</p>
+
+		<h2>background.</h2>
+		<p>I
+was born and raised in Saint Louis, Missouri, but then lived in Austin,
+Texas for 9 years where I grew up, enjoyed seeing tons of bands and
+drank beer all while being tossed around by the <a href="http://www.answers.com/topic/dot-com-1">.com</a>
+bubble. Once that was over I moved back to Saint Louis where I live
+with my wife, two children and two dogs. I am currently employed at a
+large company, the third such assignment since being back, as a Linux
+adminstrator. The environment is a big change from favorite gig in
+Austin where sandle clad developers and I worked on software at a 54
+person company. I got to manage the code and administrate Unix and
+Linux servers all while keeping the mood light.</p>
+
+		<h2>quirks.</h2>
+		<p>I
+enjoy music (probably too much), art, yoga, time with my family, beer,
+hot weather and fruit. I dislike close minded people, poorly coded
+websites, loose fitting trousers and broken cd cases. Also, excuse me,
+but I believe you have my stapler.</p>
+	
+		<h2>more.</h2>
+		<p>For more information about me and my interests, you might be interested in my 'proper' websites.  My weblog as it were is <a href="http://fak3r.com/">fak3r.com</a> and my news/commentary site, where I discuss digitial rights and personal privacy issues, is <a href="http://lefttochance.com/">lefttochance.com</a>.  Other sites I host and run can be found on the launch page for <a href="http://cryer.us/">cryer.us</a>, which has been online since November of 2001.</p>
+
+</div>
+
+              <div class="footer">
+              	<p><a href="html/about.html">about this site</a></p> 
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+
+      </div>
+    </div>
+
+  </body></html>

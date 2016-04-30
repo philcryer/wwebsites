@@ -1,0 +1,615 @@
+#!/bin/sh
+#
+#
+#   getmoz - version 1.1
+#
+#     getmoz will download and install Mozilla nightly builds while archiving your old 
+#     nightlys and keeping your current plugins/searchplugins intact.
+#
+#   DEPENDENCIES
+#     sh wget tar (gzip) grep ps
+#   
+#   LICENCE
+#     This file may be used, modified and redistributed freely under the terms of the GNU 
+#     General Public License version 2 or later.  See the included file "getmoz.license" 
+#     or read it with more detail online at http://www.gnu.org/copyleft/gpl.html  We can 
+#     not guaranty this script will bring you happiness, the answer to the ultimate 
+#     question of life, the universe and everything (42) or anything else for that matter.
+#
+#   AUTHORS
+#     Eric Thibeault Jolin (irise-lenoir@sympatico.ca)
+#     Phil Cryer (pcryer1017@yahoo.com)
+#   
+#   FEEDBACK
+#     Please sent any comments, questions or suggestions to getmoz@mozdev.org
+#
+#   For more information, or to find out how to contribute to the project, visit:
+#     http://getmoz.mozdev.org
+#
+#
+
+
+#
+# ----- CONFIGURATION: Verify that these variables reflect your system configuration -----
+#
+
+# Mozilla Base Directory
+MOZ_BASE_PATH="$HOME/mozilla"
+
+# Install Directory
+MOZ_INSTALL_DIR="nightly"
+MOZ_INSTALL_PATH="$MOZ_BASE_PATH/$MOZ_INSTALL_DIR"
+
+# Start Mozilla after installing? ("yes" to enable, anything else or comment out to desactivate.)
+MOZ_START_MOZILLA="yes"
+
+# Symbolic Link: path where it will be created and name (comment out to deactivate.)
+# It doesn't seem to work for now. Enable only to try to debug this feature.
+# MOZ_SYM_LINK_PATH="$HOME/bin/nightly"
+
+# Symbolic Link: target it points to (have no effect if MOZ_SYM_LINK_PATH is commented out.)
+MOZ_SYM_LINK_TARGET="$MOZ_INSTALL_PATH/mozilla-bin"
+
+# File to download and URL it will be downloaded from.
+MOZ_TARBALL_NAME='mozilla-i686-pc-linux-gnu.tar.gz'
+MOZ_TARBALL_URL="http://ftp.mozilla.org/pub/mozilla/nightly/latest/$MOZ_TARBALL_NAME"
+
+# Name of plugins and searchplugins directories (different for Mac)
+MOZ_PLUGINS_DIR="plugins"
+MOZ_SEARCHPLUGINS_DIR="searchplugins"
+
+# Name of getmoz log directory
+GETMOZLOG_DIR=~/".getmoz"
+
+# Temporary Directory (will untar the archive there and remove it afterwards)
+##### USE $TMP/getmoztmp instead ?
+GETMOZ_TMP="$MOZ_BASE_PATH/getmoztmp"
+
+
+
+
+#
+# ------ End of variables definition: Beginning of script ------
+#
+
+
+echo
+echo '      getmoz - Mozilla nightly downloader and installer'
+echo
+
+
+
+# Check for .getmoz directory, and create it if it does not exist
+if [ ! -e $GETMOZLOG_DIR ]; then
+        echo "getmoz log directory does not exist."
+        echo -n "Creating $GETMOZLOG_DIR... "
+        if mkdir -p $GETMOZLOG_DIR
+        then
+	        echo 'Done'
+	fi
+fi
+
+
+
+# Write start date and start time to getmoz.log
+echo " " >> $GETMOZLOG_DIR/getmoz.log
+echo "--------------------------------------------------------------" >> $GETMOZLOG_DIR/getmoz.log
+date +"getmoz started on %c" >> $GETMOZLOG_DIR/getmoz.log
+
+
+
+echo -n 'Checking that GNU Wget is installed...'
+if [ -e /usr/bin/wget ]
+then
+	echo 'Done'
+else
+	############################################################
+	# DO A "locate wget" and/or "wget -V" BEFORE GIVING UP !?! #
+	############################################################
+
+	echo 'ERROR'
+	echo
+	echo 'GNU Wget not found. To download the latest Mozilla build, getmoz calls'
+	echo 'GNU Wget, which was not found to be installed in /usr/bin.'
+	echo 'To download GNU Wget, visit http://www.gnu.org/software/wget/wget.html'
+	echo 'Exiting...'
+	echo 
+	exit 1
+fi
+
+
+
+if [ -f $MOZ_BASE_PATH/$MOZ_TARBALL_NAME ]; then
+	echo -n "Checking if a new build is available..."
+	if wget -N --spider --directory-prefix=$MOZ_BASE_PATH $MOZ_TARBALL_URL -o $TMP/timestamp.getmoz
+	then
+GETMOZ_CHECK_NEW_BUILD=`cat $TMP/timestamp.getmoz | grep -c Server\ file\ no\ newer\ than\ local\ file`
+#echo "$GETMOZ_CHECK_NEW_BUILD"
+#exit 0
+			if [ $GETMOZ_CHECK_NEW_BUILD -eq 1 ]; then
+			echo "No"
+			echo
+			echo 'No new build available.'
+			echo
+			rm -f $TMP/timestamp.getmoz
+
+	     #######################################################################################
+	     #  STILL START MOZILLA ? Make a variable for that (don't start if used as cron job!)  #
+	     #######################################################################################
+
+	                echo 'Exiting...'		
+			
+# Log no new build available to getmoz.log
+	echo "No new build available." >> $GETMOZLOG_DIR/getmoz.log
+	date +"getmoz finished on %c" >> $GETMOZLOG_DIR/getmoz.log
+	echo " " >> $GETMOZLOG_DIR/getmoz.log
+			
+			echo
+			exit 0
+		else
+			echo "Yes"
+			rm -f $TMP/timestamp.getmoz
+		fi
+	fi
+fi
+
+
+echo -n 'Checking that Mozilla is not running...'
+ISMOZRUNNING=`ps -axf --cols 99999 | grep -c $MOZ_INSTALL_PATH`
+if [ $ISMOZRUNNING -le 1 ]; then
+	echo 'Done'
+else
+	echo 'ERROR'
+	echo
+	echo 'Mozilla has been found to be a running process.'
+	echo 'Please close Mozilla and rerun getmoz.'
+	echo 'Exiting...'
+	echo
+	exit 1
+fi
+
+
+# Check if base directory exists and I have write permission in it.
+if [ ! -e $MOZ_BASE_PATH ]; then
+	echo "Mozilla base directory does not exist."
+	echo -n "Creating $MOZ_BASE_PATH... "
+	if mkdir -p $MOZ_BASE_PATH
+	then
+		echo 'Done'
+	fi
+fi
+
+
+if [ ! -w $MOZ_BASE_PATH ]; then
+
+	echo
+	echo "You do not have write permission in $MOZ_BASE_PATH."
+	echo
+
+#######################################################################################################
+# echo "Do you want to log as root, change the installation directory or exit? (root / target / exit) #
+#######################################################################################################
+
+	echo 'Do you want to login as root ("yes" or "no")?'
+	read INPUT_PROMTROOT
+
+	# Promts for password if su is chosen, will give three chances before exiting.
+	until [ $INPUT_PROMTROOT = no -o $INPUT_PROMTROOT = yes ]; do
+		echo 'You need to enter either "yes" or "no" in lowercase.'
+		read INPUT_PROMTROOT
+	done
+
+	if [ "$INPUT_PROMTROOT" = "no" ]; then
+		echo
+		echo "You do not appropriate file permissions in $MOZ_BASE_PATH"
+		echo "Either rerun getmoz when you have the root password or"
+		echo "change the target directory (MOZ_BASE_PATH) in getmoz."
+		echo "($0)"
+		echo
+		echo "Exiting..."
+		echo
+		exit 1
+	else
+		echo
+		if su -c $0
+		then
+			exit 0
+			else		
+			echo
+			if su -c $0
+			then
+				exit 0
+				else
+				echo
+				if su -c $0
+				then
+					exit 0
+					else
+					echo
+					echo 'Wrong password.'
+					echo
+					echo "You do not appropriate file permissions in $MOZ_BASE_PATH"
+					echo "Either rerun getmoz when you have the root password or"
+					echo "change the target directory (MOZ_BASE_PATH) in getmoz"
+					echo "($0). MOZ_BASE_PATH is currently set to:"
+					echo "$MOZ_BASE_PATH"
+					echo
+					echo "Exiting..."
+					echo
+					exit 1
+				fi
+			fi
+		fi
+	fi
+fi
+
+
+####### If $MOZ_BASE_PATH contains a mozilla installation directly
+#	mkdir $GETMOZ_TMP/nightly-$MOZ_OLD_BUILD_ID
+#	mv $MOZ_BASE_PATH/* $GETMOZ_TMP/nightly-$MOZ_OLD_BUILD_ID
+#	mv $GETMOZ_TMP/nightly-$MOZ_OLD_BUILD_ID $MOZ_BASE_PATH
+
+####### If $MOZ_INSTALL_PATH is not a symlink and contains a nightly
+#	mv $MOZ_INSTALL_PATH $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID
+#	ln -s $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID $MOZ_INSTALL_PATH
+
+
+# Check for existing installation and print current Build ID
+if [ -e $MOZ_INSTALL_PATH ]; then
+
+	# Define the MOZ_OLD_BUILD_ID variable and display the installed Mozilla build number
+
+	if MOZ_OLD_BUILD_ID=`$MOZ_INSTALL_PATH/mozilla -v | cut -d' ' -f10`
+	then
+		echo "Mozilla installation found. Build ID: $MOZ_OLD_BUILD_ID"
+	else
+		echo
+		echo 'There was an error determining the build number of the currently installed'
+		echo 'Mozilla. Please verify that a working installation of Mozilla is present in'
+		echo "$MOZ_INSTALL_DIR"
+		echo 'Remove it manually and rerun getmoz if the installation is broken.'
+		echo "Don't forget to save your plugins and search plugins if you do so!"
+		echo
+		exit 1
+	fi
+
+##################################################################
+# DO A FIND / LOCATE TO SEE IF IT IS INSTALLED SOMEWHERE ELSE !? #
+##################################################################
+
+	else
+	echo "No Mozilla installation was found: no plugins will be kept."
+	echo "If you have them somewhere else, copy them manually in"
+	echo "$MOZ_INSTALL_PATH/$MOZ_PLUGINS_DIR and"
+	echo "$MOZ_INSTALL_PATH/$MOZ_SEARCHPLUGINS_DIR"
+	echo
+fi
+
+
+# Remove old tarball and download nightly with GNU wget.
+echo -n "Removing old tarball..."
+if rm -f $MOZ_BASE_PATH/$MOZ_TARBALL_NAME
+then
+	echo "Done"
+else
+	echo "ERROR"
+	echo
+	echo "There was an error removing the old tarball, please ensure that the download"
+	echo "was complete, and try again."
+	echo
+	echo "Exiting..."
+	echo
+	exit 1
+fi
+
+
+echo -n 'Downloading latest nightly...'
+if wget -q --directory-prefix=$MOZ_BASE_PATH $MOZ_TARBALL_URL
+then
+	echo 'Done'
+else
+	echo 'ERROR'
+	echo
+	echo 'There was an error downloading the latest version of Mozilla.'
+	echo 'Please verify that you have a working installation of GNU Wget installed'
+	echo 'by typing: "wget -V" at a command prompt. If it is installed properly,'
+	echo 'verify that the MOZ_TARBALL_NAME and MOZ_TARBALL_URL variables in getmoz'
+	echo 'are valid, as mozilla.org could change those in the future.'
+	rm -f $MOZ_BASE_PATH/$MOZ_TARBALL_NAME
+	echo
+	echo "Exiting..."
+	echo
+	exit 1
+fi
+
+
+
+if [ -L $MOZ_INSTALL_PATH ]; then
+	echo -n 'Preparing for installation...'
+	if rm -f $MOZ_INSTALL_PATH
+	then
+		echo 'Done'
+	else
+		echo 'ERROR'
+		echo
+		echo 'Could not remove old symbolic link.'
+		echo
+		exit 1
+	fi
+fi
+
+
+echo -n 'Unpacking the downloaded archive...'
+if mkdir $GETMOZ_TMP && tar -xzf $MOZ_BASE_PATH/$MOZ_TARBALL_NAME --directory $GETMOZ_TMP
+then
+	echo 'Done'
+else
+	echo 'ERROR'
+	echo
+	echo 'There was an error untarring the downloaded Mozilla tarball.'
+	echo 'Please verify that you have GNU tar installed and that it supports gzip compression.'
+	echo
+	echo -n 'Removing temporary files...'
+	if rm -rf $GETMOZ_TMP
+	then
+		echo "Done"
+	else
+		echo "ERROR"
+		echo
+		echo "Could not remove the files from "$GETMOZ_TMP
+		echo "please remove them manually."
+	fi
+	echo -n 'Restoring old Mozilla installation...'
+	if [ -e $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID ]; then
+		echo -n 'Restoring the old Mozilla installation...'
+		if ln -s $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID $MOZ_INSTALL_PATH
+		then
+			echo "Done"
+		else
+			echo "ERROR"
+			echo
+			echo "An error has occured while restoring your old Mozilla installation."
+			echo "Check the files located in " 
+			echo $MOZ_BASE_PATH"/nightly-"$MOZ_OLD_BUILD_ID
+			echo "and move them manually to restore you old Mozilla installation."
+		fi
+	fi
+	echo
+	echo "Exiting..."
+	echo
+	exit 1
+fi
+
+
+# Check if the new build is the same as the old (in case the tarball gets deleted)
+if MOZ_NEW_BUILD_ID=`$GETMOZ_TMP/mozilla/mozilla -v | cut -d' ' -f10`
+then
+	if [ -d $MOZ_BASE_PATH/nightly-$MOZ_NEW_BUILD_ID -a $MOZ_NEW_BUILD_ID = $MOZ_OLD_BUILD_ID ]; then
+		echo
+		echo 'The downloaded build seems to be the same as the one currently installed.'
+		echo 'To avoid downloading the same builds twice, do not delete the tarball.'
+		echo 'Mozilla tarball: $MOZ_BASE_PATH/$MOZ_TARBALL_NAME'
+		echo
+		echo -n 'Removing temporary files...'
+		if rm -rf $GETMOZ_TMP
+		then
+			echo "Done"
+		else
+			echo "ERROR"
+			echo
+			echo "Could not remove the files from "$GETMOZ_TMP
+			echo "please remove them manually."
+		fi
+		echo -n 'Restoring the old Mozilla installation...'
+		if ln -s $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID $MOZ_INSTALL_PATH
+		then
+			echo "Done"
+		else
+			echo "ERROR"
+			echo
+			echo "An error has occured while restoring your old Mozilla installation."
+			echo "Check the files located in " 
+			echo $MOZ_BASE_PATH"/nightly-"$MOZ_OLD_BUILD_ID
+			echo "and move them manually to restore you old Mozilla installation."
+		fi
+		echo
+		exit 0
+	fi
+else
+	echo
+	echo 'Could not get the new Mozilla build ID. Perhaps this build is corrupted. Try running getmoz'
+	echo 'again at a later time to get another build, which should solve this. If you continue to get'
+	echo 'this message, please mail us at getmoz@mozdev.org Don't forget to paste the variables section 
+	echo 'and which platform you run Mozilla on.'
+	echo
+	echo -n 'Removing temporary files...'
+	if rm -rf $GETMOZ_TMP
+	then
+		echo "Done"
+	else
+		echo "ERROR"
+		echo
+		echo "Could not remove the files from "$GETMOZ_TMP
+		echo "please remove them manually."
+					
+	fi
+	echo -n 'Restoring the old Mozilla installation...'
+	if ln -s $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID $MOZ_INSTALL_PATH
+	then
+		echo "Done"
+	else
+		echo "ERROR"
+		echo
+		echo "An error has occured while restoring your old Mozilla installation."
+                echo "Check the files located in " 
+                echo $MOZ_BASE_PATH"/nightly-"$MOZ_OLD_BUILD_ID
+                echo "and move them manually to restore you old Mozilla installation."
+	fi
+	echo
+	exit 1
+fi
+
+
+
+# Move the new nightly at it's place.
+echo -n "Moving the latest nightly to $MOZ_BASE_PATH/nightly-$MOZ_NEW_BUILD_ID..."
+if mv $GETMOZ_TMP/mozilla $MOZ_BASE_PATH/nightly-$MOZ_NEW_BUILD_ID
+then
+	echo 'Done'
+else
+	echo 'ERROR'
+	echo
+	echo "Could not move new nightly to $MOZ_BASE_PATH/nightly-$MOZ_NEW_BUILD_ID..."
+	echo 'Do you have write permission?'
+	echo
+	echo -n 'Removing temporary files...'
+	if rm -rf $GETMOZ_TMP
+	then
+		echo "Done"
+	else
+		echo "ERROR"
+		echo
+		echo "Could not remove the files from "$GETMOZ_TMP
+                echo "please remove them manually."
+	fi
+	if [ -e $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID ]; then
+		echo -n 'Restoring the old Mozilla installation...'
+		if ln -s $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID $MOZ_INSTALL_PATH
+		then
+			echo "Done"
+		else
+			echo "ERROR"
+			echo
+			echo "An error has occured while restoring your old Mozilla installation."
+                        echo "Check the files located in " 
+                        echo $MOZ_BASE_PATH"/nightly-"$MOZ_OLD_BUILD_ID
+                        echo "and move them manually to restore you old Mozilla installation."
+		fi
+	fi
+	echo
+	echo "Exiting..."
+	echo
+	exit 1
+fi
+if ! rm -rf $GETMOZ_TMP
+then
+	echo "Could not remove the files from "$GETMOZ_TMP
+        echo "remove them manually and try again."
+fi
+
+
+echo -n 'Linking to the new installation...'
+if ln -s $MOZ_BASE_PATH/nightly-$MOZ_NEW_BUILD_ID $MOZ_INSTALL_PATH
+then
+	echo 'Done'
+else
+	echo 'ERROR'
+	echo
+	echo 'Could not create a link.'
+	echo
+fi
+
+
+##################################################################
+# cp -Rf WILL KEEP THE DEFAULT PLUGINS THAT COME WITH MOZILLA    #
+# EVEN IF THE USER REMOVED THEM... IS THIS WHAT WE WANT TO DO ?  #
+# 	   SHOULD WE rm -rf && (-a ??) cp -Rf INSTEAD?		 #
+##################################################################
+
+# Copy plugins and search plugins from archive if it exists.
+# Also check if MOZ_OLD_BUILD_ID != MOZ_NEW_BUILD_ID in case moz gets deleted while getmoz is running.
+if [ -e $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID/$MOZ_PLUGINS_DIR -a $MOZ_NEW_BUILD_ID != $MOZ_OLD_BUILD_ID ]; then
+
+	echo -n 'Restoring plugins...'
+	if cp -Rf $MOZ_BASE_PATH/$MOZ_INSTALL_DIR-$MOZ_OLD_BUILD_ID/$MOZ_PLUGINS_DIR $MOZ_INSTALL_PATH
+	then
+		echo 'Done'
+	else
+		echo 'ERROR'
+		echo
+		echo "Could not restore plugins in $MOZ_INSTALL_PATH/$MOZ_PLUGINS_DIR..."
+		echo "Try copying them manually from: $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID/$MOZ_PLUGINS_DIR"
+		echo "to: $MOZ_INSTALL_DIR/$MOZ_PLUGINS_DIR"
+		echo
+	fi
+fi
+
+if [ -e $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID/$MOZ_SEARCHPLUGINS_DIR -a $MOZ_NEW_BUILD_ID != $MOZ_OLD_BUILD_ID ]; then
+	echo -n 'Restoring search plugins...'
+	if cp -Rf $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID/$MOZ_SEARCHPLUGINS_DIR $MOZ_INSTALL_PATH
+	then
+		echo 'Done'
+	else
+		echo 'ERROR'
+		echo
+		echo "Could not restore search plugins in $MOZ_INSTALL_PATH/$MOZ_SEARCHPLUGINS_DIR..."
+		echo "Try copying them manually from: $MOZ_BASE_PATH/nightly-$MOZ_OLD_BUILD_ID/$MOZ_SEARCHPLUGINS_DIR"
+		echo "to: $MOZ_INSTALL_PATH/$MOZ_SEARCHPLUGINS_DIR"
+		echo
+	fi
+fi
+
+
+# Update symbolic link if it is set.
+if [ $MOZ_SYM_LINK_PATH -a -L $MOZ_SYM_LINK_PATH ]; then
+	echo -n 'Removing old symbolic link...'
+	if rm -f $MOZ_SYM_LINK_PATH
+	then
+		echo 'Done'
+	else
+		echo 'ERROR'
+		echo
+		echo 'Could not remove old symbolic link.'
+		echo
+	fi
+
+	echo -n 'Creating symbolic link...'
+	if ln -s $MOZ_SYM_LINK_TARGET $MOZ_SYM_LINK_PATH
+	then
+		echo 'Done'
+	else
+		echo 'ERROR'
+		echo
+		echo 'Could not create symbolic link.'
+		echo
+	fi
+fi
+
+
+# Summarize the Mozilla version update.
+if [ $MOZ_OLD_BUILD_ID -a $MOZ_NEW_BUILD_ID ]; then
+	echo "Mozilla has been updated from build $MOZ_OLD_BUILD_ID -> $MOZ_NEW_BUILD_ID"
+fi
+
+
+
+# Summarize the Mozilla version update to getmoz.log
+echo "Mozilla has been updated from build $MOZ_OLD_BUILD_ID -> $MOZ_NEW_BUILD_ID" >> $GETMOZLOG_DIR/getmoz.log
+date +"getmoz finished on %c" >> $GETMOZLOG_DIR/getmoz.log
+
+
+
+# Start Mozilla if variable is set.
+if [ "$MOZ_START_MOZILLA" = "yes" ]; then
+	echo -n 'Starting Mozilla...'
+	if $MOZ_INSTALL_PATH/mozilla &
+	then
+		echo 'Done'
+	else
+		echo 'ERROR'
+		echo
+		echo 'Could not start Mozilla...please start it manually from:'
+		echo $MOZ_INSTALL_PATH		
+		echo
+	fi
+fi
+
+
+echo
+echo "getmoz successfully installed the lastest Mozilla nightly."
+echo "Happy bug hunting!"
+echo
+
+
+exit 0
+

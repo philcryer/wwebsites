@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of the GNU General Public License
+#    as published by the Free Software Foundation; either version 2
+#    of the License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+
+# modify the following to suit your environment
+export DB_BACKUP="/backup/mysql_backup"
+export DB_USER="root"
+export DB_PASSWD="********"
+
+# title and version
+echo ""
+echo "mySQL_backup"
+echo "----------------------"
+echo "* Rotating backups..."
+rm -rf $DB_BACKUP/04
+mv $DB_BACKUP/03 $DB_BACKUP/04
+mv $DB_BACKUP/02 $DB_BACKUP/03
+mv $DB_BACKUP/01 $DB_BACKUP/02
+mkdir $DB_BACKUP/01 
+echo "* Creating new backup..."
+mysqldump --user=$DB_USER --password=$DB_PASSWD --all-databases | bzip2 > $DB_BACKUP/01/mysql-`date +%Y-%m-%d`.bz2
+echo "----------------------"
+echo "Done"
+exit 0

@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Phil Cryer :: MUSIC</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/ajaxtabs.js"></script> 
+
+
+<script type="text/javascript" src="js/mootools.js"></script>
+<script type="text/javascript">
+var accordion;
+var accordionTogglers;
+var accordionContents;
+
+window.onload = function() {
+        accordionTogglers = document.getElementsByClassName('accToggler');
+
+        accordionTogglers.each(function(toggler){
+                //remember the original color
+                toggler.origColor = toggler.getStyle('background-color');
+                //set the effect
+                toggler.fx = new Fx.Color(toggler, 'background-color');
+        });
+
+        accordionContents = document.getElementsByClassName('accContent');
+
+        accordion = new Fx.Accordion(accordionTogglers, accordionContents,{
+                //when an element is opened change the background color to blue
+                onActive: function(toggler){
+                        toggler.fx.toColor('#1F1F1F');
+                },
+                onBackground: function(toggler){
+                        //change the background color to the original (green) 
+                        //color when another toggler is pressed
+                        toggler.setStyle('background-color', toggler.origColor);
+                }
+        });
+}
+</script>
+
+<style type="text/css">
+*       {padding:0px; margin:0px;}
+.accToggler{
+        margin: 3px auto;
+        padding: 3px;
+        width: 400px;
+        background: #acc95f;
+backgroundTog: #1F1F1F;
+        color: #f4f4f4;
+        border: 1px solid #fff;
+        cursor: pointer;
+}
+.accContent{
+        margin: 0px auto;
+        width: 400px;
+}
+</style>
+
+
+
+
+
+
+</head>
+<body>
+
+<div id="content">
+	<div id="colOne">
+
+		<h2>Music</h2>
+        Instead of presenting what music I like now, or my favorite releases from the previous years (you can see all of these back to 2001 on http://fak3r.com/music) I'm going to list what I belive to be the greatest recorded works ever released.  Feel free to complain, but I hope you discover some new favories.  B3low is where you'll see them, soonish.<br /><br />
+
+	<p style="background-color: #7A7A7A" class="accToggler">pre 1969</p>
+        <p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+The Beatles "Rubber Soul"<br>
+The Beatles "White Album"<br>
+James Brown "Live at the Apollo (1963)"<br>
+Ornette Coleman "The Shape of Jazz to Come"<br>
+John Coltrane "Giant Steps"<br>
+Miles Davis "Kind of Blue"<br>
+MC5 "Kick Out the Jams"<br>
+Charles Mingus "Mingus ah uhm"<br>
+Sonny Rollins "Plus 4"<br>
+Thelonious Monk "Monk's Music"<br>
+Velvet Underground  "The Velvet Underground &amp; Nico"<br>
+</p>
+
+
+        <p style="background-color: #7A7A7A;" class="accToggler">1970s</p>
+        <p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+AC/DC "Highway To Hell"<br>
+Buzzcocks "Another Music In A Different Kitchen"<br>
+The Clash "London Calling"<br>
+Devo "Freedom of Choice"<br>
+The Grateful Dead "American Beauty"<br>
+Iggy (Pop) &amp; The Stooges "Raw Power"<br>
+Led Zeppelin "II"<br>
+Van Morrison "Moondance"<br>
+Pink Floyd "Dark Side Of The Moon"<br>
+Ramones "Ramones"<br>
+Sam and Dave "The Best of Sam and Dave"<br>
+Van Halen "Van Halen"<br>
+Velvet Underground "Loaded"<br>
+Townes Van Zandt "The Late Great Townes Van Zandt"<br>
+The Who "Live at Leeds"<br>
+The Who "Who's Next?"<br>
+</p>
+
+
+        <p style="background-color: #7A7A7A" class="accToggler">1980s</p>
+        <p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Cowboy Junkies "The Trinity Session"<br>
+The Cure "Disintegration"<br>
+Husker Du "New Day Rising"<br>
+The Jesus &amp; Mary Chain "Psychocandy"<br>
+Willie Nelson "Red Headed Stranger"<br>
+Pixies "Doolittle"<br>
+The Replacements "Tim"<br>
+The Smiths "The Queen Is Dead"<br>
+The Smiths "Strangeways, Here We Come"<br>
+Sonic Youth "Daydream Nation"<br>
+The Stone Roses "The Stone Roses"<br>
+They Might Be Giants "Lincoln"<br>
+U2 "War"<br>
+Violent Femmes "Violent Femmes"<br>
+X "Los Angeles"<br />
+</p>
+
+
+        <p style="background-color: #7A7A7A" class="accToggler">1990s</p>
+        <p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Beastie Boys "Check Your Head"<br>
+Beck "Odelay"<br>
+Boards of Canada "Music Has the Right to Children"<br>
+DJ Shadow  "...Endtroducing"<br>
+Fugazi "Repeater"<br>
+Guided by Voices  "Alien Lanes"<br>
+Guided by Voices "Bee Thousand"<br>
+Modest Mouse "The Moon and Antartica"<br>
+Mogwai "Young Team"<br>
+Neutral Milk Hotel "In An Airplane Over The Sea"<br>
+PJ  Harvey "Is This Desire?"<br>
+Public Enemy  "Fear of a Black Planet"<br>
+Radiohead "OK Computer"<br>
+Refused "The Shape of Punk to Come"<br>
+Sleater-Kinney "Call The Doctor"<br>
+Elliott Smith "Either/Or"<br>
+Wilco "Yankee Hotel Foxtrot"<br>
+</p>
+
+
+        <p style="background-color: #7A7A7A" class="accToggler">2000 to present</p>
+        <p style="overflow: hidden; height: 0px; visibility: hidden; opacity: 0;" class="accContent">
+Andrew Bird "Andrew Bird &amp; the Mysterious Production of Eggs"<br>
+Bloc Party "Silent Alarm"<br>
+Broken Social Scene "You Forgot It in People"<br>
+Interpol "Antics"<br>
+PJ Harvey "Stories From The City, Stories From The Sea"<br>
+Radiohead "Hail to the Thief"<br>
+The Strokes "Is This It?"<br>
+The Wrens "The Meadowlands"<br>
+</p>
+
+
+
+
+
+</div>
+	<div style="clear: both;"></div>
+</div>
+
+<br /><br />
+
+</body>
+</html>
+

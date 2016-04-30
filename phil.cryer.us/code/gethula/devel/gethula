@@ -1,0 +1,152 @@
+#!/bin/sh
+#
+##########################################################
+# Change variables to suit your system
+##########################################################
+# base directory for the gethula script
+BASE_DIR=$PWD
+#
+# where should the code be checked out to and built?
+BUILD_DIR=/usr/local/installers
+#
+# delete the source tree before checking out new code?
+CLEAN_TREE="yes"
+#
+# target directory for your hula install?
+AUTOGEN_PREFIX=/usr/local/hula
+#
+# default smtp port you want Hula to use?
+SMTP=26
+#
+# default nameserver you want Hula to use?
+DNS=192.168.1.3
+#
+# default domain you want Hula to use?
+DOMAIN=cryer.us
+#
+# only configure and make? (stop before install)
+STOP_AFTER_MAKE="yes"
+#
+##########################################################
+clear
+echo ""
+echo " +-----------------------------------------------------+"
+echo " |    gethula.sh - gets & builds current Hula code     |"
+echo " +-----------------------------------------------------+"
+echo ""
+#
+if [ ! "$BASE_DIR" ]
+then
+  echo "BASE_DIR not defined!" >&2
+  exit 1
+fi
+if [ ! "$BUILD_DIR" ]
+then
+  echo "BUILD_DIR not defined!" >&2
+  exit 1
+fi
+if [ ! "$AUTOGEN_PREFIX" ]
+then
+  echo "AUTOGEN_PREFIX not defined!" >&2
+  exit 1
+fi
+if [ ! "$SMTP" ]
+then
+  echo "SMTP not defined!" >&2
+  exit 1
+fi
+if [ ! "$DNS" ]
+then
+  echo "DNS not defined!" >&2
+  exit 1
+fi
+if [ ! "$DOMAIN" ]
+then
+  echo "DOMAIN not defined!" >&2
+  exit 1
+fi
+#
+START_TIME=`date`
+#
+echo "	Changing to build directory..."
+cd $BUILD_DIR
+if [ "$CLEAN_TREE" = "yes" ]
+then
+	echo "	Cleaning old tree..."
+	rm -rf hula
+fi
+#
+echo ""
+echo " +-----------------------------------------------------+"
+echo ""
+echo "	Staring SVN checkout..."
+echo ""
+#
+$BASE_DIR/expectscript
+#
+cd hula
+#
+# Get revision number
+#REVISION=`grep revision $BUILD_DIR/hula/.svn/entries > build_number | cut -c 14,15,16 revision_number`
+svn info > revision_number
+#
+echo ""
+echo " +-----------------------------------------------------+"
+echo ""
+echo "	Patching Hula, if required..."
+OS=`uname`
+if [ $OS = "FreeBSD" ]; then
+        echo "	Target system is $OS, patching Hula source..."
+        patch -p0 < $BASE_DIR/autogen.diff
+        patch -p0 < $BASE_DIR/resolve.diff
+fi
+#
+if [ $OS = "Darwin" ]; then
+        echo "	Target system is $OS, patching Hula source..."
+        patch -p0 < $BASE_DIR/autogen.diff
+        patch -p0 < $BASE_DIR/resolve.diff
+fi
+#
+exit 0
+echo ""
+echo " +-----------------------------------------------------+"
+echo ""
+echo "  Configuring Hula..."
+./autogen.sh --prefix=$AUTOGEN_PREFIX
+#
+echo ""
+echo " +-----------------------------------------------------+"
+echo ""
+echo "  Making Hula..."
+make
+echo ""
+#
+if [ "$STOP_AFTER_MAKE" = "yes" ]
+then
+        echo "  Stopping after make, continue with make install manually..."
+	exit 0
+fi
+#
+echo " +-----------------------------------------------------+"
+echo " | 		Make Complete 	  		     |"
+echo " +-----------------------------------------------------+"
+echo ""
+echo "  Installing Hula..."
+echo ""
+make install
+cp revision_number $AUTOGEN_PREFIX
+echo " +-----------------------------------------------------+"
+echo " | 	    Make Install Complete   		     |"
+echo " +-----------------------------------------------------+"
+echo ""
+echo "  Configuring Hula..."
+cd $AUTOGEN_PREFIX/sbin
+./hulasetup   --smtp=$SMTP --dns=$DNS --domain=$DOMAIN --certificate      
+echo ""
+echo "  gethula_install complete. To run Hula server:"
+echo "    cd $AUTOGEN_PREFIX/sbin"
+echo "    ./hulamanager -s"
+echo ""
+echo " +----------------------------------------------------+"
+#
+exit 0

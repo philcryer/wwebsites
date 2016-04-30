@@ -1,0 +1,57 @@
+Index: resolve.c
+===================================================================
+--- ./src/libs/xpl/resolve.c.old	(revision 276)
++++ ./src/libs/xpl/resolve.c	(working copy)
+@@ -21,11 +21,14 @@
+ 
+ #include <config.h>
+ #include <xpl.h>
+-#include <connio.h>
++#include <connio.h>
+ #include <xplresolve.h>
+ 
+ #ifdef HAVE_RESOLV_H
+ #include <resolv.h>
++#include <sys/types.h>
++#include <netinet/in.h>
++#include <arpa/nameser.h>
+ #endif
+ 
+ 
+@@ -57,10 +60,10 @@
+     int resolverCount;
+ }  Resolver = { 0 };
+ 
+-#if defined(WIN32) || defined(NETWARE) || defined(LIBC)
+-#pragma pack (push, 1)
+-#endif
+-
++#if defined(WIN32) || defined(NETWARE) || defined(LIBC)
++#pragma pack (push, 1)
++#endif
++
+ /* Pieces of a DNS packet */
+ typedef struct _ResolveHeader {
+     unsigned short id;          /* Query ID -- hopefully unique                   */
+@@ -106,9 +109,9 @@
+ 
+ typedef struct _ResolveAData ResolveAData;
+ 
+-#if defined(WIN32) || defined(NETWARE) || defined(LIBC)
+-#pragma pack (pop)
+-#endif
++#if defined(WIN32) || defined(NETWARE) || defined(LIBC)
++#pragma pack (pop)
++#endif
+ 
+ /* Constants for flags field of ResolveHeader */
+ #define F_TYPERESPONSE      0x8000    /* Packet contains response                       */
+@@ -709,7 +712,7 @@
+     
+     h_errno = 0;
+     
+-    size = res_search(host, ns_c_in, type, answer, answerLen);
++    size = res_search(host, C_IN, type, answer, answerLen);
+     
+     if (size >= 0) {
+ 	return size;

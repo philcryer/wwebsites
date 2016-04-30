@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Phil Cryer :: MUSIC</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/ajaxtabs.js"></script> 
+
+
+
+
+<script type="text/javascript" src="js/prototype.js"></script>
+<script type="text/javascript" src="js/moo.js"></script>
+<script type="text/javascript" src="js/moo_002.js"></script>
+
+
+<script type="text/javascript">
+var accordionClicks;
+var accordionContents;
+var accordion1;
+var accordion2;
+window.onload = function() {
+                // example 1
+                accordionClicks = document.getElementsByClassName('accordion-click1');
+                accordionContents = document.getElementsByClassName('accordion-content1');
+
+                accordion1 = new fx.Accordion(accordionClicks, accordionContents);
+
+                accordionClicks = document.getElementsByClassName('accordion-click2');
+                accordionContents = document.getElementsByClassName('accordion-content2');
+
+                accordion2 = new fx.Accordion(accordionClicks, accordionContents, {width: true, height:true});
+        accordion2.showThisHideOpen(accordionContents[0]);
+
+}
+</script>
+
+
+
+</head>
+<body>
+
+
+<div id="content">
+	<div id="colOne">
+		<h2>Music</h2>
+        Instead of presenting what music I like now, or my favorite releases from the previous years (you can see all of these back to 2001 on http://fak3r.com/music) I'm going to list what I belive to be the greatest recorded works ever released.  Feel free to complain, but I hope you discover some new favories.  B3low is where you'll see them, soonish.<br /><br />
+
+
+
+
+<div id="container">
+        <p class="accordion-click1">pre 1969</p>
+        <p style="overflow: hidden; visibility: visible; opacity: 1; height: 72px;" class="accordion-content1">
+The Beatles "Rubber Soul"<br />
+The Beatles "White Album"<br />
+James Brown "Live at the Apollo (1963)"<br />
+Ornette Coleman "The Shape of Jazz to Come"<br />
+John Coltrane "Giant Steps"<br />
+Miles Davis "Kind of Blue"<br />
+MC5 "Kick Out the Jams"<br />
+Charles Mingus "Mingus ah uhm"<br />
+Sonny Rollins "Plus 4"<br />
+Thelonious Monk "Monk's Music"<br />
+Velvet Underground  "The Velvet Underground & Nico"<br />
+        </p>
+</div>
+
+		</div>
+	<div style="clear: both;"></div>
+</div>
+
+</body>
+</html>
+

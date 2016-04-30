@@ -1,0 +1,28 @@
+# $FreeBSD: src/etc/root/dot.profile,v 1.20 1999/08/27 23:24:09 peter Exp $
+#
+# general variables
+PATH=/root/bin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/X11R6/bin
+export PATH
+HOME=/root
+export HOME
+TERM=${TERM:-cons25}
+export TERM
+PAGER=more
+export PAGER
+SHELL=/usr/local/bin/bash
+export SHELL
+set -o vi
+#
+# populate titlebar
+echo -ne "\033]0;${USER}@${HOSTNAME} \007" 
+#
+# alias anything
+alias ll='ls -GFl'
+alias vi='/usr/local/bin/vim'
+alias lg='cd /var/log'
+alias hh='cd ~'
+alias ww='cd /usr/local/www/data/'
+alias gg='cd /usr/local/www/data/hula/gethula/devel/gethula'
+#
+# kick the .bashrc
+source ~/.bashrc

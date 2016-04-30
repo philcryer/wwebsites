@@ -1,0 +1,600 @@
+/**  RESET  ---------------------------------------------------------------*/
+html,body,div,.header,#footer,aside,.nav,.section,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;font-style:inherit;font-weight:inherit;vertical-align:baseline;background:transparent;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}:focus{outline:0;}ins{text-decoration:none;}del{text-decoration:line-through;}table{border-collapse:collapse;border-spacing:0;}/* public domain - v1.0 | 20080212 */
+/*-------------------------------------------------------------------------*/
+
+/**  GLOBAL  --------------------------------------------------------------*/
+html, body {
+  background-color: #808080;
+  color: #000;
+}
+body {
+  font-family: "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+a:link, a:visited, a:hover, a:focus, a:active {
+  #border-bottom: 2px solid #00e;
+  padding: 0.2em 0.1em 0.1em;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  #background-color: #ff0;
+  #border-color: #000;
+  color: #000;
+}
+a:focus {
+  #outline: 2px solid red;
+}
+small {
+  font-family: "MONOSPACE", "DejaVu Sans Mono", "Monaco", Courier, monospace;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+}
+medium {
+  font-family: "MONOSPACE", "DejaVu Sans Mono", "Monaco", Courier, monospace;
+  font-size: 70px;
+  font-style: normal;
+  color: 0b0b0b;
+  font-weight: 400;
+}
+large {
+  font-family: "MONOSPACE", "DejaVu Sans Mono", "Monaco", Courier, monospace;
+  color: 0b0b0b;
+  font-size: 220px;
+  font-style: normal;
+  font-weight: 400;
+}
+aside, #footer, .header, .nav, .section, .time {
+  color: 0b0b0b;
+  display: block;
+}
+.time {
+  background-color: #ddd;
+  color: #333;
+  font-family: "MONOSPACE", "DejaVu Sans Mono", "Monaco", Courier, monospace;
+  font-size: 11px;
+  padding: 0.7em 0.6em;
+  position: absolute;
+    right: 5%;
+    top: 0;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  HEADER  --------------------------------------------------------------*/
+.header {
+  font-size: 165%;
+  letter-spacing: -1px;
+  margin: 2% auto;
+  text-transform: uppercase;
+  width: 90%;
+}
+.header a:link, .header a:visited, .header a:hover, .header a:focus, .header a:active {
+  background-color: #eee;
+  border-bottom: none;
+  color: #aaa;
+  padding: 0;
+  text-decoration: none;
+}
+.header a:hover, .header a:focus {
+  background-color: inherit;
+  color: #000;
+}
+.header h1 {
+  background-color: inherit;
+  color: #aaa;
+  font-family: "DejaVuSans-ExtraLight", "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  padding-left: 0.2em;
+}
+.header h1 em {
+  font-weight: 900;
+}
+.header small {
+  background-color: inherit;
+  color: #fff;
+  margin-left: -4px;
+  vertical-align: sub;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  PAGE STRUCTURE  ------------------------------------------------------*/
+#page {
+  margin: 0 auto;
+  width: 90%;
+}
+#page .section, #page .nav {
+  float: right;
+}
+#page .section .section {
+  float: none;
+}
+#content {
+  width: 60%;
+}
+#contextual-content {
+  margin-right: 2%;
+  width: 23%;
+  min-width: 23%;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  CONTENT  -------------------------------------------------------------*/
+#content .header {
+  margin: auto;
+  width: auto;
+}
+#content a:link, #content a:visited, #content a:hover, #content a:focus, #content a:active {
+  background-color: #eee;
+  border: none;
+  color: #00e;
+  text-decoration: underline;
+}
+#content a:visited {
+  background-color: #eee;
+  color: #00e;
+  text-decoration: none;
+}
+#content a:hover, #content a:focus {
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+}
+#content a:focus {
+  outline: 2px solid red;
+}
+#content.section h1 {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  font-size: 150%;
+  font-weight: 900;
+  margin: -1px 0 0 0;
+  padding: 0.5em 1.45em;
+  text-transform: uppercase;
+}
+#content .header h1 {
+  background-color: inherit;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  color: #000;
+  font-size: 204.5%;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  padding: 0 0.5em 0.2em 0.5em;
+  text-transform: uppercase;
+}
+#content .header h1 em {
+  font-weight: 400;
+}
+#content h2 {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  font-size: 125%;
+  font-weight: 900;
+  margin-top: -1px;
+  padding: 0.5em 1.75em;
+  text-transform: uppercase;
+}
+#content h2 a:link, #content h2 a:visited, #content h2 a:hover, #content h2 a:focus, #content h2 a:active {
+  background-color: #fff;
+  border: none;
+  color: #ccc;
+  display: block;
+  font-family: "DejaVuSans-ExtraLight", "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  margin: -0.5em -1.75em 0.2em -1.75em;
+  padding: 0.6em 1.75em;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+#content h2 a:hover, #content h2 a:focus {
+  background-color: #eee;
+  color: #000;
+}
+#content h3 {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  font-size: 112.5%;
+  font-weight: 900;
+  margin-top: -1px;
+  padding: 0.5em 2em;
+}
+#content h4 {
+  font-weight: 900;
+  padding: 0.5em 2.1em;
+}
+#content img {
+  margin-top: 1em;
+  max-width: 80%;
+}
+#content p {
+  line-height: 1.8;
+  margin: 0.5em 2.25em 1.5em 2.25em;
+}
+#content p.symbol {
+  font-size: 288px;
+  font-weight: 900;
+  line-height: 1;
+  margin: auto;
+  padding: 0.1em;
+}
+#content p strong {
+  font-weight: 900;
+}
+#content ul, ol {
+  line-height: 2;
+  margin: 1em auto;
+}
+#content ul {
+  margin-left: 3.6em;
+}
+#content ol {
+  margin-left: 4.5em;
+}
+#content ul li {
+  list-style: disc outside;
+}
+#content ol li {
+  list-style: decimal-leading-zero outside;
+}
+#content code, #content pre {
+  background-color: #ddd;
+  color: #333;
+  font-family: "MONOSPACE", "DejaVu Sans Mono", "Monaco", Courier, monospace;
+  font-size: 13px;
+  padding: 0;
+}
+#content pre {
+  border-left: 1em solid #333;
+  line-height: 1.5;
+  margin: 1em 0;
+  padding: 0.8em 1.7em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+#content code {
+  padding: 0.3em 0.2em 0.2em 0.2em;
+}
+#content pre code {
+  border: none;
+}
+#content a:link code, #content a:visited code, #content a:hover code, #content a:focus code, #content a:active code {
+  padding: 0.5em 0.2em 0.2em 0.2em;
+}
+#content del, #content del * {
+  background-color: #000;
+  border: none;
+  color: #000;
+  padding: 0.3em 0;
+}
+#content del a:link, #content del a:visited, #content del a:hover, #content del a:focus, #content del a:active {
+  background-color: #000;
+  color: #000;
+}
+#content ins {
+  border-bottom: 2px solid #0b0;
+  padding-bottom: 0.1em;
+}
+#content ins:before, #content ins:after {
+  background-color: inherit;
+  color: #0b0;
+  content: " ✚ ";
+}
+#content address {
+  margin: 0 0 0 2.5em;
+}
+#content dl {
+/*  background-color: #fff;
+  border: 1px dotted #000;*/
+  font-family: "DejaVu Serif", Georgia, serif;
+  font-weight: 900;
+  margin: 1em 0;
+  padding: 2em 2.3em;
+}
+#content dt {
+  font-size: 112.5%;
+  margin-bottom: 0.7em;
+}
+#content dd {
+  font-family: "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+}
+#content .grammar {
+  display: block;
+  font-size: 90%;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+.url, .org {
+  display: none;
+}
+.fn, .tel, .email, .xmpp {
+  display: block;
+}
+.fn {
+  font-size: 250%;
+  margin: 0.5em 0 0.5em 0.15em;
+}
+.tel {
+  font-size: 145%;
+  font-family: "DejaVuSans-ExtraLight", "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  margin-bottom: 1.25em;
+}
+#content a.email:link, #content a.email:visited, #content a.email:hover, #content a.email:focus, #content a.email:active, #content a.xmpp:link, #content a.xmpp:visited, #content a.xmpp:hover, #content a.xmpp:focus, #content a.xmpp:active {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  color: #ccc;
+  display: block;
+  font-size: 145%;
+  font-weight: 900;
+  margin: auto 0 -1px -1.75em;
+  padding: 0.4em 1.75em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#content a.email:hover, #content a.email:focus, #content a.xmpp:hover, #content a.xmpp:focus {
+  background-color: #eee;
+  border-color: #eee;
+  color: #000;
+}
+.download-vcard {
+  display: block;
+  margin: 0.3em 0 3em 0;
+}
+.download-vcard a, .download-vcard img, .download-vcard span {
+  display: block;
+}
+#content .download-vcard a:link, #content .download-vcard a:visited, #content .download-vcard a:hover, #content .download-vcard a:focus, #content .download-vcard a:active {
+  background-color: #eee;
+  border: none;
+  color: #ccc;
+  display: block;
+  text-decoration: none;
+}
+#content .download-vcard a:hover, #content .download-vcard a:focus {
+  background-color: #eee;
+  color: #000;
+}
+.download-vcard img {
+  background-color: #eee;
+  margin: 0 0 0 -1px;
+  padding: 0 90% 0 1.8em;
+}
+.download-vcard span {
+  padding: 0.6em 2.1em;
+  text-transform: uppercase;
+}
+.download-vcard a:link span, .download-vcard a:visited span, .download-vcard a:hover span, .download-vcard a:focus span, .download-vcard a:active span {
+  background-color: #fff;
+  color: #ccc;
+}
+.download-vcard a:hover span, .download-vcard a:focus span {
+
+  background-color: #eee;
+  color: #000;
+}
+#resume {
+  margin-bottom: 2em;
+}
+#resume abbr {
+  font-size: 90%;
+  font-family: "DejaVuSans-ExtraLight", "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+#resume #hcard-john-muhl, #resume .tel {
+  display: none;
+}
+#resume span.summary, #resume .location, #resume .degree, #resume .award, #resume .major {
+  display: block;
+}
+#resume .vevent {
+  margin: 0.5em 0 2em 2.35em;
+}
+#resume .location {
+  margin-top: 0.5em;
+}
+#resume .degree, #resume .award, #resume .major {
+  margin-top: 0.3em;
+}
+#resume span.summary {
+  line-height: 1.5;
+  margin-top: 0.5em;
+}
+#resume #hcard-can-design .url, #resume #hcard-bisign-werbeagentur .url {
+  display: block;
+}
+#resume .url {
+  font-size: 110%;
+  margin: 0.3em 0;
+  padding: 0;
+}
+#resume .title, #resume .degree, #resume .award, #resume .major, #resume .location {
+  color: #444;
+  font-size: 70%;
+  font-style: oblique;
+}
+#content #resume  a.url:link, #content #resume  a.url:visited, #content #resume  a.url:hover, #content #resume  a.url:focus, #content #resume  a.url:active {
+  background-color: #eee;
+  color: #000;
+  display: block;
+  border: none;
+  text-decoration: underline;
+}
+#content #resume  a.url:visited, #content #resume  a.url:hover, #content #resume  a.url:focus {
+  background-color: #eee;
+  color: #000;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  CONTEXTUAL CONTENT  --------------------------------------------------*/
+#contextual-content ul {
+  margin-bottom: 2em;
+}
+#contextual-content ul li a:link, #contextual-content ul li a:visited, #contextual-content ul li a:hover, #contextual-content ul li a:focus, #contextual-content ul li a:active {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  color: #ccc;
+  display: block;
+  font-size: 140%;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: -1px;
+  padding: 0.6em 0.8em;
+  text-transform: uppercase;
+}
+#contextual-content ul li a:hover, #contextual-content ul li a:focus {
+  background-color: #eee;
+  color: #000;
+}
+#contextual-content p {
+  margin-bottom: 2em;
+  text-align: center;
+}
+#contextual-content p a:link, #contextual-content p a:visited, #contextual-content p a:hover, #contextual-content p a:focus, #contextual-content p a:active {
+  border-bottom: none;
+  display: block;
+  padding: 2em 0;
+}
+#contextual-content p a:hover, #contextual-content p a:focus {
+  background-color: #eee;
+  color: inherit;
+}
+#contextual-content p img {
+  width: 80%;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  NAVIGATION  ----------------------------------------------------------*/
+.nav {
+  font-size: 112.5%;
+  font-family: "DejaVuSans-ExtraLight", "DejaVu Sans", "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  margin-right: 2%;
+  width: 13%;
+}
+.nav a:link, .nav a:visited, .nav a:hover, .nav a:focus, .nav a:active {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  color: #ccc;
+  display: block;
+  margin-bottom: -1px;
+  padding: 0.5em 0.8em;
+}
+.nav a:hover, .nav a:focus {
+  background-color: #eee;
+  color: #000;
+}
+.nav a.here:link, .nav a.here:visited, .nav a.here:hover, .nav a.here:focus, .nav a.here:active {
+  background-color: #eee;
+  color: #ccc;
+  cursor: default;
+  font-weight: 900;
+}
+.nav a.here:hover, .nav a.here:focus {
+  background-color: #eee;
+  color: #000;
+}
+.nav ul {
+  margin-bottom: 2em;
+}
+.nav.minimal {
+  width: 58%;
+}
+.nav.minimal ul {
+  margin: -1.8em 0 0 0;
+  padding: 0;
+}
+.nav.minimal a:link, .nav.minimal a:visited, .nav.minimal a:hover, .nav.minimal a:focus, .nav.minimal a:active {
+  font-size: 270%;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1;
+  padding: 0.4em 0 0.4em 0.5em;
+  text-transform: uppercase;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  FOOTER  --------------------------------------------------------------*/
+#footer {
+  background-color: inherit;
+  border-top: 1px solid #eee;
+  clear: both;
+  color: #ccc;
+  margin: 30em auto 0.5em auto;
+  width: 90%;
+}
+#footer a:link, #footer a:visited, #footer a:hover, #footer a:focus, #footer a:active {
+  background-color: inherit;
+  border-bottom: none;
+  color: #ccc;
+}
+#footer a:hover, #footer a:focus {
+  background-color: inherit;
+  color: #000;
+}
+/*-------------------------------------------------------------------------*/
+
+/**  FORM INPUTS  ---------------------------------------------------------*/
+form fieldset input, textarea {
+  background: #fff url("http://s3.amazonaws.com/us.static.assets/page_attachments/202/bg-input.gif") 0 0 repeat-x;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-top: 1px solid #7c7c7c;
+  color: #bbb;
+  display: block;
+  font-family: "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.8em;
+  margin: 0 0 0 -5px;
+  padding: 0.4em 0 0.4em 0.7em;
+  width: inherit;
+  max-width: 100%;
+}
+form fieldset input:hover,#search input:hover,textarea:hover {
+  background-color: #fff;
+  color: #000;
+}
+form fieldset input:focus,#search input:focus,textarea:focus {
+  background-color: #fff;
+  color: #000;
+  outline: 2px solid #000;
+}
+form fieldset input,textarea {
+  margin-bottom: 0.4em;
+  width: 66%;
+  max-width: 66%;
+}
+input#send {
+  background: #eee;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  font-weight: 900;
+  margin: 1em 0 0 0;
+  padding: 0.4em;
+  width: auto;
+}
+input#send:hover,input#send:focus {
+  background-color: #eee;
+  color: #000;
+  outline: 2px solid #000;
+}
+textarea {
+  font-size: 0.9em;
+  height: 12em;
+  line-height: 1.3;
+  padding: 0.2em 0 0.2em 0.55em;
+}
+fieldset {
+  margin: 1em 0 0 2.4em;
+  width: 80%;
+}
+/*-------------------------------------------------------------------------*/
