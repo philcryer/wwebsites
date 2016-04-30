@@ -1,0 +1,364 @@
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x065902a0, pid=3938, tid=3084368784
+#
+# Java VM: Java HotSpot(TM) Server VM (10.0-b19 mixed mode linux-x86)
+# Problematic frame:
+# V  [libjvm.so+0x5902a0]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x08059000):  JavaThread "main" [_thread_in_vm, id=3939, stack(0xb7d2c000,0xb7d7c000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0xa1f40ef4
+
+Registers:
+EAX=0xa1f40ef4, EBX=0x08061ef0, ECX=0x08072e30, EDX=0x000043d0
+ESP=0xb7d782b0, EBP=0xb7d782c8, ESI=0xa1f40ef4, EDI=0x4d62594a
+EIP=0x065902a0, CR2=0xa1f40ef4, EFLAGS=0x00010282
+
+Top of Stack: (sp=0xb7d782b0)
+0xb7d782b0:   08061ed0 39941137 b7d782f8 08061ed0
+0xb7d782c0:   4d62594a 0000000d b7d78308 0659050e
+0xb7d782d0:   08061ed0 000043d0 a9fe9ed7 0000000d
+0xb7d782e0:   4d62594a 08059000 11727c13 b7d78390
+0xb7d782f0:   00000008 66059000 00000003 b7d7833c
+0xb7d78300:   a9fe9ed7 0000000d b7d78408 06274704
+0xb7d78310:   a9fe9ed7 0000000d b7d7833c 00000000
+0xb7d78320:   5f769d9b 3d37ee03 81ed3b2a 08059000 
+
+Instructions: (pc=0x065902a0)
+0x06590290:   58 04 8b 45 0c 8d 0c 83 8b 31 85 f6 74 10 89 f6
+0x065902a0:   39 3e 74 1c 8b 46 04 83 e0 fe 89 c6 75 f2 31 d2 
+
+Stack: [0xb7d2c000,0xb7d7c000],  sp=0xb7d782b0,  free space=304k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x5902a0]
+V  [libjvm.so+0x59050e]
+V  [libjvm.so+0x274704]
+V  [libjvm.so+0x274db8]
+V  [libjvm.so+0x27b2e6]
+V  [libjvm.so+0x598c7e]
+V  [libjvm.so+0x3e29e3]
+V  [libjvm.so+0x3c7260]
+C  [libjava.so+0xb641]  Java_java_lang_ClassLoader_defineClass1+0x1e1
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+V  [libjvm.so+0x37338d]
+V  [libjvm.so+0x4fd168]
+V  [libjvm.so+0x373220]
+V  [libjvm.so+0x3c90d3]
+C  [libjava.so+0xaa5c]  Java_java_security_AccessController_doPrivileged__Ljava_security_PrivilegedExceptionAction_2Ljava_security_AccessControlContext_2+0x3c
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+V  [libjvm.so+0x37338d]
+V  [libjvm.so+0x4fd168]
+V  [libjvm.so+0x372eb1]
+V  [libjvm.so+0x372f9a]
+V  [libjvm.so+0x599717]
+V  [libjvm.so+0x5981b5]
+V  [libjvm.so+0x597227]
+V  [libjvm.so+0x597565]
+V  [libjvm.so+0x27b9c3]
+V  [libjvm.so+0x598c7e]
+V  [libjvm.so+0x3e29e3]
+V  [libjvm.so+0x3c7260]
+C  [libjava.so+0xb641]  Java_java_lang_ClassLoader_defineClass1+0x1e1
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+V  [libjvm.so+0x37338d]
+V  [libjvm.so+0x4fd168]
+V  [libjvm.so+0x373220]
+V  [libjvm.so+0x3c90d3]
+C  [libjava.so+0xaa5c]  Java_java_security_AccessController_doPrivileged__Ljava_security_PrivilegedExceptionAction_2Ljava_security_AccessControlContext_2+0x3c
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+V  [libjvm.so+0x37338d]
+V  [libjvm.so+0x4fd168]
+V  [libjvm.so+0x372eb1]
+V  [libjvm.so+0x372f9a]
+V  [libjvm.so+0x599717]
+V  [libjvm.so+0x5981b5]
+V  [libjvm.so+0x597227]
+V  [libjvm.so+0x596f32]
+V  [libjvm.so+0x2c6ad3]
+V  [libjvm.so+0x363596]
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+V  [libjvm.so+0x37338d]
+V  [libjvm.so+0x4fd168]
+V  [libjvm.so+0x373220]
+V  [libjvm.so+0x39c846]
+V  [libjvm.so+0x38e048]
+C  [java+0x1b98]  JavaMain+0x2c8
+C  [libpthread.so.0+0x4fd3]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::Interpreter
+v  ~BufferBlob::StubRoutines (1)
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0xaa1fa000 JavaThread "MultiThreadedHttpConnectionManager cleanup" daemon [_thread_blocked, id=3950, stack(0xaa0b0000,0xaa100000)]
+  0xaa756800 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=3948, stack(0xaa386000,0xaa3d6000)]
+  0xaa754c00 JavaThread "CompilerThread1" daemon [_thread_in_native, id=3947, stack(0xaa3d6000,0xaa456000)]
+  0xaa753800 JavaThread "CompilerThread0" daemon [_thread_blocked, id=3946, stack(0xaa456000,0xaa4d6000)]
+  0xaa752800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3945, stack(0xaa4d6000,0xaa526000)]
+  0xaa73a800 JavaThread "Finalizer" daemon [_thread_blocked, id=3944, stack(0xaa660000,0xaa6b0000)]
+  0xaa739800 JavaThread "Reference Handler" daemon [_thread_blocked, id=3943, stack(0xaa6b0000,0xaa700000)]
+=>0x08059000 JavaThread "main" [_thread_in_vm, id=3939, stack(0xb7d2c000,0xb7d7c000)]
+
+Other Threads:
+  0xaa736400 VMThread [stack: 0xaa808000,0xaa888000] [id=3942]
+  0xaa758000 WatcherThread [stack: 0xaa306000,0xaa386000] [id=3949]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 6336K, used 3692K [0xb4140000, 0xb4be0000, 0xb4be0000)
+  eden space 5440K, 51% used [0xb4140000,0xb43fddc0,0xb4690000)
+  from space 896K, 98% used [0xb4770000,0xb484d3a8,0xb4850000)
+  to   space 896K, 0% used [0xb4690000,0xb4690000,0xb4770000)
+ PSOldGen        total 58304K, used 489K [0xaebe0000, 0xb24d0000, 0xb4140000)
+  object space 58304K, 0% used [0xaebe0000,0xaec5a5c0,0xb24d0000)
+ PSPermGen       total 16384K, used 8315K [0xaabe0000, 0xabbe0000, 0xaebe0000)
+  object space 16384K, 50% used [0xaabe0000,0xab3fed80,0xabbe0000)
+
+Dynamic libraries:
+06000000-0665c000 r-xp 00000000 08:06 8190       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/server/libjvm.so
+0665c000-066a0000 rwxp 0065c000 08:06 8190       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/server/libjvm.so
+066a0000-06ac2000 rwxp 066a0000 00:00 0 
+08048000-08052000 r-xp 00000000 08:06 16410      /usr/lib/jvm/jdk1.6.0_05/bin/java
+08052000-08053000 rwxp 00009000 08:06 16410      /usr/lib/jvm/jdk1.6.0_05/bin/java
+08053000-083eb000 rwxp 08053000 00:00 0          [heap]
+a9f00000-a9ff0000 rwxp a9f00000 00:00 0 
+a9ff0000-aa000000 ---p a9ff0000 00:00 0 
+aa00a000-aa085000 r-xp 00000000 08:06 8162       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libawt.so
+aa085000-aa08c000 rwxp 0007b000 08:06 8162       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libawt.so
+aa08c000-aa0b0000 rwxp aa08c000 00:00 0 
+aa0b0000-aa0b3000 ---p aa0b0000 00:00 0 
+aa0b3000-aa200000 rwxp aa0b3000 00:00 0 
+aa216000-aa21a000 r-xp 00000000 08:06 8179       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/headless/libmawt.so
+aa21a000-aa21b000 rwxp 00004000 08:06 8179       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/headless/libmawt.so
+aa21b000-aa222000 r-xs 00110000 08:06 595250     /usr/lib/jvm/jdk1.6.0_05/jre/lib/resources.jar
+aa222000-aa235000 r-xp 00000000 08:06 8161       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libnet.so
+aa235000-aa236000 rwxp 00013000 08:06 8161       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libnet.so
+aa236000-aa23c000 r-xs 00091000 08:06 595133     /usr/lib/jvm/jdk1.6.0_05/jre/lib/jsse.jar
+aa23c000-aa242000 r-xs 00019000 08:03 30872      /opt/fedora22/client/lib/xml-apis.jar
+aa242000-aa256000 r-xs 000e3000 08:03 30871      /opt/fedora22/client/lib/xercesImpl.jar
+aa256000-aa259000 r-xs 0001c000 08:03 30870      /opt/fedora22/client/lib/wsdl4j-1.5.1.jar
+aa259000-aa25c000 r-xs 0001d000 08:03 30869      /opt/fedora22/client/lib/trippi-1.1.2-core.jar
+aa25c000-aa261000 r-xs 00039000 08:03 30868      /opt/fedora22/client/lib/sunxacml-patched.jar
+aa261000-aa26b000 r-xs 00089000 08:03 30867      /opt/fedora22/client/lib/saxon.jar
+aa26b000-aa26d000 r-xs 00003000 08:03 30866      /opt/fedora22/client/lib/saaj.jar
+aa26d000-aa270000 r-xs 0000c000 08:03 30862      /opt/fedora22/client/lib/jrdf-0.3.3.jar
+aa270000-aa276000 r-xs 00054000 08:03 30861      /opt/fedora22/client/lib/jhbasic.jar
+aa276000-aa278000 r-xs 00006000 08:03 30860      /opt/fedora22/client/lib/jaxrpc.jar
+aa278000-aa27e000 r-xs 00051000 08:03 30864      /opt/fedora22/client/lib/mail.jar
+aa27e000-aa291000 r-xs 0016e000 08:03 30858      /opt/fedora22/client/lib/jai_core.jar
+aa291000-aa295000 r-xs 00031000 08:03 30857      /opt/fedora22/client/lib/jai_codec.jar
+aa295000-aa296000 r-xs 00003000 08:03 30859      /opt/fedora22/client/lib/java-getopt-1.0.11.jar
+aa296000-aa298000 r-xs 00009000 08:03 30855      /opt/fedora22/client/lib/commons-pool-1.2.jar
+aa298000-aa29f000 r-xs 00053000 08:03 30863      /opt/fedora22/client/lib/log4j-1.2.14.jar
+aa29f000-aa2a4000 r-xs 00046000 08:03 30853      /opt/fedora22/client/lib/commons-httpclient-3.1-beta1.jar
+aa2a4000-aa2e1000 r-xs 00226000 08:03 30849      /opt/fedora22/client/lib/batik-all.jar
+aa2e1000-aa2f5000 r-xs 0017b000 08:03 30848      /opt/fedora22/client/lib/axis.jar
+aa2f5000-aa306000 r-xs 000d5000 08:03 30846      /opt/fedora22/client/fedora-client.jar
+aa306000-aa307000 ---p aa306000 00:00 0 
+aa307000-aa386000 rwxp aa307000 00:00 0 
+aa386000-aa389000 ---p aa386000 00:00 0 
+aa389000-aa3d6000 rwxp aa389000 00:00 0 
+aa3d6000-aa3d9000 ---p aa3d6000 00:00 0 
+aa3d9000-aa456000 rwxp aa3d9000 00:00 0 
+aa456000-aa459000 ---p aa456000 00:00 0 
+aa459000-aa4d6000 rwxp aa459000 00:00 0 
+aa4d6000-aa4d9000 ---p aa4d6000 00:00 0 
+aa4d9000-aa526000 rwxp aa4d9000 00:00 0 
+aa526000-aa660000 r-xp 00000000 08:06 563141     /usr/lib/locale/locale-archive
+aa660000-aa663000 ---p aa660000 00:00 0 
+aa663000-aa6b0000 rwxp aa663000 00:00 0 
+aa6b0000-aa6b3000 ---p aa6b0000 00:00 0 
+aa6b3000-aa7fd000 rwxp aa6b3000 00:00 0 
+aa7fd000-aa800000 ---p aa7fd000 00:00 0 
+aa800000-aa802000 r-xs 00008000 08:03 30854      /opt/fedora22/client/lib/commons-logging.jar
+aa802000-aa805000 r-xs 0000f000 08:03 30852      /opt/fedora22/client/lib/commons-discovery.jar
+aa805000-aa808000 r-xs 00018000 08:03 30851      /opt/fedora22/client/lib/commons-dbcp-1.2.1.jar
+aa808000-aa809000 ---p aa808000 00:00 0 
+aa809000-aa8ba000 rwxp aa809000 00:00 0 
+aa8ba000-aaa44000 r-xs 02ded000 08:06 595242     /usr/lib/jvm/jdk1.6.0_05/jre/lib/rt.jar
+aaa44000-aaa45000 ---p aaa44000 00:00 0 
+aaa45000-aaac4000 rwxp aaa45000 00:00 0 
+aaac4000-aaac5000 ---p aaac4000 00:00 0 
+aaac5000-aab4c000 rwxp aaac5000 00:00 0 
+aab4c000-aab64000 rwxp aab4c000 00:00 0 
+aab64000-aab81000 rwxp aab64000 00:00 0 
+aab81000-aab8f000 rwxp aab81000 00:00 0 
+aab8f000-aab97000 rwxp aab8f000 00:00 0 
+aab97000-aabaf000 rwxp aab97000 00:00 0 
+aabaf000-aabcc000 rwxp aabaf000 00:00 0 
+aabcc000-aabd9000 rwxp aabcc000 00:00 0 
+aabd9000-aabdf000 rwxp aabd9000 00:00 0 
+aabdf000-abbe0000 rwxp aabdf000 00:00 0 
+abbe0000-aebe0000 rwxp abbe0000 00:00 0 
+aebe0000-b24d0000 rwxp aebe0000 00:00 0 
+b24d0000-b4140000 rwxp b24d0000 00:00 0 
+b4140000-b4be0000 rwxp b4140000 00:00 0 
+b4be0000-b4be2000 r-xs 0000a000 08:03 30850      /opt/fedora22/client/lib/commons-codec-1.3.jar
+b4be2000-b4be4000 r-xs 0000c000 08:03 30847      /opt/fedora22/client/lib/activation-1.0.2.jar
+b4be4000-b4bed000 rwxp b4be4000 00:00 0 
+b4bed000-b4ca4000 rwxp b4bed000 00:00 0 
+b4ca4000-b4ee4000 rwxp b4ca4000 00:00 0 
+b4ee4000-b7ca4000 rwxp b4ee4000 00:00 0 
+b7ca4000-b7cb3000 r-xp 00000000 08:06 8173       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libzip.so
+b7cb3000-b7cb5000 rwxp 0000e000 08:06 8173       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libzip.so
+b7cb5000-b7cd8000 r-xp 00000000 08:06 8187       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libjava.so
+b7cd8000-b7cda000 rwxp 00023000 08:06 8187       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libjava.so
+b7cda000-b7ce5000 r-xp 00000000 08:06 8154       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libverify.so
+b7ce5000-b7ce6000 rwxp 0000b000 08:06 8154       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/libverify.so
+b7ce6000-b7cef000 r-xp 00000000 08:03 17694      /lib/libnss_files-2.7.so
+b7cef000-b7cf1000 rwxp 00008000 08:03 17694      /lib/libnss_files-2.7.so
+b7cf1000-b7cf9000 r-xp 00000000 08:03 17696      /lib/libnss_nis-2.7.so
+b7cf9000-b7cfb000 rwxp 00007000 08:03 17696      /lib/libnss_nis-2.7.so
+b7cfb000-b7d01000 r-xp 00000000 08:03 17692      /lib/libnss_compat-2.7.so
+b7d01000-b7d03000 rwxp 00005000 08:03 17692      /lib/libnss_compat-2.7.so
+b7d03000-b7d16000 r-xp 00000000 08:03 17691      /lib/libnsl-2.7.so
+b7d16000-b7d18000 rwxp 00012000 08:03 17691      /lib/libnsl-2.7.so
+b7d18000-b7d1a000 rwxp b7d18000 00:00 0 
+b7d1b000-b7d23000 rwxs 00000000 08:05 116739     /tmp/hsperfdata_root/3938
+b7d23000-b7d2a000 r-xp 00000000 08:03 17701      /lib/librt-2.7.so
+b7d2a000-b7d2c000 rwxp 00006000 08:03 17701      /lib/librt-2.7.so
+b7d2c000-b7d2f000 ---p b7d2c000 00:00 0 
+b7d2f000-b7d7c000 rwxp b7d2f000 00:00 0 
+b7d7c000-b7d9f000 r-xp 00000000 08:03 17689      /lib/libm-2.7.so
+b7d9f000-b7da1000 rwxp 00022000 08:03 17689      /lib/libm-2.7.so
+b7da1000-b7da2000 rwxp b7da1000 00:00 0 
+b7da2000-b7ed1000 r-xp 00000000 08:03 17685      /lib/libc-2.7.so
+b7ed1000-b7ed2000 r-xp 0012f000 08:03 17685      /lib/libc-2.7.so
+b7ed2000-b7ed4000 rwxp 00130000 08:03 17685      /lib/libc-2.7.so
+b7ed4000-b7ed7000 rwxp b7ed4000 00:00 0 
+b7ed7000-b7ed9000 r-xp 00000000 08:03 17688      /lib/libdl-2.7.so
+b7ed9000-b7edb000 rwxp 00001000 08:03 17688      /lib/libdl-2.7.so
+b7edb000-b7ee2000 r-xp 00000000 08:06 8153       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/jli/libjli.so
+b7ee2000-b7ee4000 rwxp 00006000 08:06 8153       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/jli/libjli.so
+b7ee4000-b7ee5000 rwxp b7ee4000 00:00 0 
+b7ee5000-b7ef8000 r-xp 00000000 08:03 17699      /lib/libpthread-2.7.so
+b7ef8000-b7efa000 rwxp 00012000 08:03 17699      /lib/libpthread-2.7.so
+b7efa000-b7efc000 rwxp b7efa000 00:00 0 
+b7efc000-b7f02000 r-xp 00000000 08:06 8172       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/native_threads/libhpi.so
+b7f02000-b7f03000 rwxp 00006000 08:06 8172       /usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/native_threads/libhpi.so
+b7f03000-b7f04000 rwxp b7f03000 00:00 0 
+b7f04000-b7f05000 r-xp b7f04000 00:00 0 
+b7f05000-b7f07000 rwxp b7f05000 00:00 0 
+b7f07000-b7f21000 r-xp 00000000 08:03 17682      /lib/ld-2.7.so
+b7f21000-b7f23000 rwxp 00019000 08:03 17682      /lib/ld-2.7.so
+bffa3000-bffb9000 rwxp bffa3000 00:00 0          [stack]
+ffffe000-fffff000 r-xp 00000000 00:00 0          [vdso]
+
+VM Arguments:
+jvm_args: -Xms64m -Xmx96m -Djavax.net.ssl.trustStore=/opt/fedora22/client/truststore -Djavax.net.ssl.trustStorePassword=tomcat -Dfedora.home=/opt/fedora22 -Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl 
+java_command: fedora.client.utility.ingest.Ingest f ingestable.xml foxml1.0 localhost:8080 fedoraAdmin fedoraAdmin http
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/jdk1.6.0_05
+PATH=/bin:/usr/bin:/usr/local/bin:/opt/bin
+LD_LIBRARY_PATH=/usr/lib/jvm/jdk1.6.0_05/jre/lib/i386/server:/usr/lib/jvm/jdk1.6.0_05/jre/lib/i386:/usr/lib/jvm/jdk1.6.0_05/jre/../lib/i386
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x5ed7c0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x5ed7c0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x4fc230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x4fc230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x4fc230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x4fc230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x4fe270], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x4fe010], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x4fe010], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x4fe010], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x4fe010], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:lenny/sid
+
+uname:Linux 2.6.22-3-686 #1 SMP Sun Feb 10 20:20:49 UTC 2008 i686
+libc:glibc 2.7 NPTL 2.7 
+rlimit: STACK 8192k, CORE 0k, NPROC 16317, NOFILE 1024, AS infinity
+load average:0.49 0.17 0.05
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 15 stepping 13, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 2068344k(483020k free), swap 979956k(979236k free)
+
+vm_info: Java HotSpot(TM) Server VM (10.0-b19) for linux-x86 JRE (1.6.0_05-b13), built on Feb 22 2008 01:21:17 by "java_re" with gcc 3.2.1-7a (J2SE release)
+
+time: Fri Jun 27 14:23:42 2008
+elapsed time: 0 seconds
+

@@ -1,0 +1,60 @@
+{
+  "basics": {
+    "name": "Phil Cryer",
+    "label": "Open source technologist and privacy advocate",
+    "picture": "https://en.gravatar.com/userimage/284739/80ac4d7ca058489b32b8fe85a98ad01f.jpg?size=200",
+    "email": "phil@philcryer.com",
+    "phone": "",
+    "website": "http://philcryer.com",
+    "summary": "Open source technical generalist of senior caliber and interests, with over fifteen years of industry experience, including systems architecture, cloud computing, virtualization, networking, storage, security, operations, converged systems and special projects. Privacy advocate and international speaker with a strong social media presence that enables high visibility into cutting edge technologies as well as an industry wide renowned reputation.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Saint Louis",
+      "countryCode": "US",
+      "region": ""
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "philcryer",
+        "url": "https://www.linkedin.com/in/philcryer"
+      },
+      {
+        "network": "GitHub",
+        "username": "philcryer",
+        "url": "https://github.com/philcryer"
+      },
+      {
+        "network": "Twitter",
+        "username": "fak3r",
+        "url": "https://twitter.com/fak3r"
+      }
+    ]
+  },
+  "work": [],
+  "volunteer": [],
+  "education": [
+    {
+      "institution": "Maryville University Saint Lous",
+      "area": "BFA (studio art, interior design)",
+      "studyType": "",
+      "startDate": "",
+      "endDate": "",
+      "gpa": "",
+      "courses": []
+    }
+  ],
+  "awards": [],
+  "publications": [],
+  "skills": [],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Yes"
+    }
+  ],
+  "interests": [],
+  "references": [],
+  "builtwith": "jsonresume.org"
+}
