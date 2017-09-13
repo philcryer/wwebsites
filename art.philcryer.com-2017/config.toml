@@ -1,0 +1,67 @@
+baseurl = "https://example.org/"
+title = "Art | Phil Cryer"
+theme = "hugo-creative-portfolio-theme"
+languageCode = "en-us"
+# Enable comments by entering your Disqus shortname
+#disqusShortname = ""
+# Enable Google Analytics by entering your tracking code
+#googleAnalytics = ""
+
+[params]
+  # Style options: default (pink), blue, green, pink, red, sea, violet
+  # Use custom.css for your custom styling
+  style = "default"
+  description = "infrequent artist"
+  #copyright = "&copy;2017 art.philcryer.com"
+  sidebarAbout = [
+    "An artist from Saint Louis, Missouri, USA",
+    "\"Art still has truth. Take refuge there.\""
+  ]
+  # Contact page
+     # Since this template is static, the contact form uses www.formspree.io as a
+     # proxy. The form makes a POST request to their servers to send the actual
+     # email. Visitors can send up to a 1000 emails each month for free.
+     #
+     # What you need to do for the setup?
+     #
+     # - set your email address under 'email' below
+     # - upload the generated site to your server
+     # - send a dummy email yourself to confirm your account
+     # - click the confirm link in the email from www.formspree.io
+     # - you're done. Happy mailing!
+  email = "you@yoursite.com"
+
+  # Nav links in the side bar
+#  [[params.navlinks]]
+#  name = "Home"
+#  url = ""
+
+  [[params.navlinks]]
+  name = "Portfolio"
+  url = ""
+
+  [[params.navlinks]]
+  name = "Concepts"
+  url = "concepts/"
+
+  [[params.navlinks]]
+  name = "Statement"
+  url = "statement/"
+
+#  [[params.navlinks]]
+#  name = "About"
+#  url = "about/"
+
+#  [[params.navlinks]]
+#  name = "Get in touch"
+#  url = "contact/"
+
+  [params.social]
+#  facebook      = "full page or profile url in facebook"
+#  googleplus    = "full profile url in googleplus"
+  email         = "art@philcryer.com"
+  twitter       = "https://twitter.com/fak3r"
+  linkedin      = "https://linkedin.com/in/philcryer"
+#  stackoverflow = "full profile url in stackoverflow"
+  instagram     = "https://instagram.com/philcryer"
+  github        = "https://github.com/philcryer"
