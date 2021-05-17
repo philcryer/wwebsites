@@ -17,3 +17,11 @@ Red study, Mixed media on wood panel, 18"x12", 2017
 Avoiding the inevitable, Oil with a latex base on wood panel, 24"x24", 2016
 
 In order of appearance, Mixed media on wood panel, 15"x17", 2014 (sold)
+
+Phil Cryer is an information technology consultant, and infrequent artist, living in Saint Louis, Missouri.
+
+His art work explores texture, contrast, and shape by utilizing paint and mixed media on wooden panels.
+
+He takes inspiration from American abstract expressionist painters and sculptors of the 20th century, and is happiest when music is playing.
+
+More details about him can be found on philcryer.com.
